@@ -5,8 +5,10 @@ const db = require("../model/helper");
 // GET all projects
 
 router.get("/", async (req, res) => {
+  console.log("WE RAE HERE");
   try {
     let results = await db("SELECT * FROM projects");
+    console.log("****", results);
     let projects = results.data;
     res.send(projects);
   } catch (err) {

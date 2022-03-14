@@ -5,8 +5,8 @@ var logger = require("morgan");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
-var usersRouter = require("./routes/projects");
-var usersRouter = require("./routes/skills");
+var projectsRouter = require("./routes/projects");
+var skillsRouter = require("./routes/skills");
 
 const cors = require("cors");
 
@@ -18,9 +18,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/", indexRouter);
 app.use("/users", usersRouter);
-app.use("/projects", usersRouter);
-app.use("/skills", usersRouter);
-
+app.use("/projects", projectsRouter);
+app.use("/skills", skillsRouter);
+app.use("/", indexRouter);
 module.exports = app;

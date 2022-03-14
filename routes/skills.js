@@ -5,6 +5,7 @@ const db = require("../model/helper");
 // GET all skills
 
 router.get("/", async (req, res) => {
+  console.log("INSIDE SKILLS");
   try {
     let results = await db("SELECT * FROM skills");
     let skills = results.data;
