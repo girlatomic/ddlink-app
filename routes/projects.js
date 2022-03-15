@@ -3,9 +3,7 @@ var router = express.Router();
 const db = require("../model/helper");
 
 // GET all projects
-
 router.get("/", async (req, res) => {
-  console.log("WE RAE HERE");
   try {
     let results = await db("SELECT * FROM projects");
     console.log("****", results);
@@ -17,7 +15,6 @@ router.get("/", async (req, res) => {
 });
 
 // GET project by Id
-
 router.get("/:id", async (req, res) => {
   let projectId = req.params.id;
 

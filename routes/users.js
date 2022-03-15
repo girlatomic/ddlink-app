@@ -3,7 +3,6 @@ var router = express.Router();
 const db = require("../model/helper");
 
 // GET all users
-
 router.get("/", async (req, res) => {
   try {
     let results = await db("SELECT * FROM users");
@@ -15,7 +14,6 @@ router.get("/", async (req, res) => {
 });
 
 // GET user by Id
-
 router.get("/:id", async (req, res) => {
   let userId = req.params.id;
 

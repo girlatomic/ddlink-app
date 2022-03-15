@@ -3,9 +3,7 @@ var router = express.Router();
 const db = require("../model/helper");
 
 // GET all skills
-
 router.get("/", async (req, res) => {
-  console.log("INSIDE SKILLS");
   try {
     let results = await db("SELECT * FROM skills");
     let skills = results.data;
@@ -16,7 +14,6 @@ router.get("/", async (req, res) => {
 });
 
 // GET skills by Id
-
 router.get("/:id", async (req, res) => {
   let skillsId = req.params.id;
 
