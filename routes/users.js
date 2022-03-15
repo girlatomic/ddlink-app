@@ -30,4 +30,23 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+// POST a new user
+router.post("/", async (req, res) => {
+  let { first_name, last_name, bio } = req.body;
+
+  let sql = `
+      INSERT INTO users (first_name, last_name, bio)
+      VALUES ('${first_name}', '${last_name}', '${bio}')
+  `;
+
+  try {
+    await db(sql);
+    let result = await db("SELECT * FROM users");
+    let users = result.data;
+    res.status(201).send(users);
+  } catch (err) {
+    res.status(500).send({ error: err.message });
+  }
+});
+
 module.exports = router;
