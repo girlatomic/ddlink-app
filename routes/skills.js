@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// GET skills by Id
+// GET skill by Id
 router.get("/:id", async (req, res) => {
   let skillsId = req.params.id;
 
@@ -25,6 +25,25 @@ router.get("/:id", async (req, res) => {
     } else {
       res.send(skills[0]);
     }
+  } catch (err) {
+    res.status(500).send({ error: err.message });
+  }
+});
+
+// POST new skill
+router.post("/", async (req, res) => {
+  let { s_role, skill_name } = req.body;
+
+  let sql = `
+      INSERT INTO skills (s_role, skill_name)
+      VALUES ('${s_role}', '${skill_name}')
+  `;
+
+  try {
+    await db(sql);
+    let result = await db("SELECT * FROM skills");
+    let skills = result.data;
+    res.status(201).send(skills);
   } catch (err) {
     res.status(500).send({ error: err.message });
   }
