@@ -2,20 +2,21 @@ import logo from './logo.svg';
 import './App.css';
 import React, {useState, useEffect} from "react";
 import { Routes, Route, Link } from "react-router-dom";
-import mainPage from "./mainPage";
-import newProjectPage from "./newProjectPage";
-import settingsPage from "./settingsPage";
-import chatPage from "./chatPage";
+import MainPage from "./pages/MainPage";
+import ChatPage from './pages/ChatPage';
+import NewProjectPage from './pages/NewProjectPage';
+import SettingsPage from './pages/SettingsPage';
+
 
 function App() {
   return (
     <div>
       <Routes>
-        <Route path="/mainpage" element={<mainPage />} />
-        <Route path="/newprojectpage" element={<newProjectPage />} />
-        <Route path="/settingspage" element={<settingsPage />} />
-        <Route path="/chatpage" element={<chatPage />} />
-        </Routes>
+         <Route path="/mainpage" element={<MainPage />} />
+         <Route path="/chatpage" element={<ChatPage />} />
+         <Route path="/newprojectpage" element={<NewProjectPage />} />
+         <Route path="/settingspage" element={<SettingsPage />} />
+      </Routes>
     </div>
   );
 }
