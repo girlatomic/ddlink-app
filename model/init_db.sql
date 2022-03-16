@@ -4,13 +4,14 @@ CREATE TABLE users (
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     first_name VARCHAR(250) NOT NULL,
     last_name VARCHAR(250) NOT NULL,
-    bio VARCHAR(250) NOT NULL
+    bio VARCHAR(250) NOT NULL,
+    email VARCHAR(200) NOT NULL
 );
 
-INSERT INTO users (first_name, last_name, bio)
+INSERT INTO users (first_name, last_name, bio, email)
 VALUES
-    ('Holly', 'Hanley', 'Awesome junior developer'),
-    ('Gaby', 'Pineda', 'Awesome junior developer');
+    ('Holly', 'Hanley', 'Awesome junior developer', 'holly@gmail.com'),
+    ('Gaby', 'Pineda', 'Awesome junior developer', 'gaby@gmail.com');
 
 
 DROP TABLE IF EXISTS skills;

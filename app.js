@@ -7,6 +7,7 @@ var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var projectsRouter = require("./routes/projects");
 var skillsRouter = require("./routes/skills");
+var authRouter = require("./routes/auth");
 
 const cors = require("cors");
 
@@ -21,5 +22,6 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/users", usersRouter);
 app.use("/projects", projectsRouter);
 app.use("/skills", skillsRouter);
+app.use("/", authRouter);
 app.use("/", indexRouter);
 module.exports = app;
