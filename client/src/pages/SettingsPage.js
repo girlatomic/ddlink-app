@@ -9,6 +9,4 @@ import UserInfo from "../components/UserInfo";
       </div>
    );
  }
- 
 
-// Settings page needs to have a form for personal information, file upload for avatar/profile pic and additional component for projects

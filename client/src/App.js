@@ -7,6 +7,8 @@ import ChatPage from './pages/ChatPage';
 import NewProjectPage from './pages/NewProjectPage';
 import SettingsPage from './pages/SettingsPage';
 import NewEditUserForm from './pages/NewEditUserForm';
+import Login from './pages/Login';
+import ProjectsTable from './pages/ProjectsTable';
 
 
 function App() {
@@ -18,6 +20,8 @@ function App() {
          <Route path="/newprojectpage" element={<NewProjectPage />} />
          <Route path="/settingspage" element={<SettingsPage />} />
          <Route path="/newedituserform" element={<NewEditUserForm />} />
+         <Route path="/login" element={<Login />} />
+         <Route path="/projectstable" element={<ProjectsTable />} />
       </Routes>
     </div>
   );
