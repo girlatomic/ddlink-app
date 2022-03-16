@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
+
  function UserInfo() {
     const [userData, setUserData] = useState({});
   useEffect(() => {
@@ -19,26 +20,30 @@ import React, { useState, useEffect } from 'react'
     }
   }
   return (
-    <div>
-        <table class="table">
-<thead>
-  <tr class="row row-cols-3 row-cols-md-3 g-20">
-    <th scope="col">#</th>
-    <th scope="col">First Name</th>
-    <th scope="col">Last Name</th>
-    <th scope="col">Bio</th>
-  </tr>
-</thead>
-<tbody>
-  <tr>
-    <th scope="row">1</th>
-    <td>{userData.first_name}</td>
-    <td>{userData.last_name}</td>
-    <td>{userData.bio}</td>
-  </tr>
-</tbody>
-</table>
-    </div>
+    <div className="container">
+        <h2>Settings</h2>
+        <div className="text-start mt-5 mb-5">
+          <button className="btn btn-primary" role="button">Edit Details</button>
+        </div>
+        <table>
+            <thead>
+            <tr>
+                <th>id</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Bio</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+            <th scope="row">1</th>
+            <td>{userData.first_name}</td>
+            <td>{userData.last_name}</td>
+            <td>{userData.bio}</td>
+            </tr>
+            </tbody>
+            </table>
+        </div>
   )
 }
 
