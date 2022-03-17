@@ -68,7 +68,7 @@ function ProjectCard() {
   return (
     <div id="root-container">
       <div class="sub-container">
-        <h1>ddlink</h1>
+        <h1>DDLink</h1>
         <div className="cardContainer">
           {projects.map((project, index) => (
             <TinderCard
@@ -81,36 +81,37 @@ function ProjectCard() {
             >
               <div
                 style={{ backgroundImage: "url(" + project.url + ")" }}
-                className="card"
+                className="cards"
               >
                 <h3>{project.name}</h3>
-                {/* <div className="project-desc">
-                  <div className="card-text">{project.desc}</div>
-                </div> */}
+                <div className="card-text">
+                  <div className="card-body">{project.desc}</div>
+                </div>
               </div>
             </TinderCard>
           ))}
         </div>
-
-        <div className="button-group">
-          <button
-            style={{ backgroundColor: !canSwipe && "#c3c4d3" }}
-            onClick={() => swipe("left")}
-          >
-            Swipe left!
-          </button>
-          <button
-            style={{ backgroundColor: !canGoBack && "#c3c4d3" }}
-            onClick={() => goBack()}
-          >
-            Undo swipe!
-          </button>
-          <button
-            style={{ backgroundColor: !canSwipe && "#c3c4d3" }}
-            onClick={() => swipe("right")}
-          >
-            Swipe right!
-          </button>
+        <div id="btn-cont">
+          <div className="button-group">
+            <button
+              style={{ backgroundColor: !canSwipe && "#c3c4d3" }}
+              onClick={() => swipe("left")}
+            >
+              Swipe left!
+            </button>
+            <button
+              style={{ backgroundColor: !canGoBack && "grey" }}
+              onClick={() => goBack()}
+            >
+              Undo swipe!
+            </button>
+            <button
+              style={{ backgroundColor: !canSwipe && "#c3c4d3" }}
+              onClick={() => swipe("right")}
+            >
+              Swipe right!
+            </button>
+          </div>
         </div>
       </div>
     </div>
