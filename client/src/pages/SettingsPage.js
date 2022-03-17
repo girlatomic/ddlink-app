@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
+import UserInfo from "../components/UserInfo";
+import ProjectsTable from "./ProjectsTable";
+ 
+ export default function SettingsPage(props) {
+   return (
+     <div>
+       <UserInfo/>
+       <ProjectsTable />
+      </div>
+   );
+ }
 
-export default function SettingsPage() {
-  return <div>settingsPage</div>;
-}

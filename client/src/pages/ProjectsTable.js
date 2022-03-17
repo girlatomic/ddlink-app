@@ -24,7 +24,8 @@ function ProjectsTable() {
     <div className="container">
         <h2>My Projects</h2>
         <div className="text-start mt-5 mb-5">
-          <button className="btn btn-primary" role="button">+ Add Project</button>
+          {/* <button className="btn btn-primary" role="button"></button> */}
+          <a href="/newprojectpage" class="btn btn-primary">+ Add Project</a>
         </div>
         <table>
             <thead>
