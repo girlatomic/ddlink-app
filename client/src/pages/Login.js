@@ -4,7 +4,7 @@ import './Login.css';
 import GoogleLogin from 'react-google-login';
 
 function Login() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [loginData, setLoginData] = useState(
     localStorage.getItem('loginData')
       ? JSON.parse(localStorage.getItem('loginData'))
@@ -12,6 +12,7 @@ function Login() {
   );
 
   const handleLogin = async googleData => {
+    console.log('this is the data', googleData);
     const res = await fetch("/login", {
         method: "POST",
         body: JSON.stringify({
@@ -24,7 +25,7 @@ function Login() {
     const data = await res.json();
     setLoginData(data);
     localStorage.setItem('loginData', JSON.stringify(data));
-    navigate('/projectstable');
+    // navigate('/projectstable');
   }
 
   const handleFailure = (result) => {
@@ -68,6 +69,7 @@ function Login() {
                     {loginData ? (
                       <div>
                         <h3> You logged in as {loginData.email}</h3>
+                        <img src={loginData.picture}/>
                         <button className="btn btn-danger" onClick={handleLogout}>Logout</button>
                       </div>
                     ) : (

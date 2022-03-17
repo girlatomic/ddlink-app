@@ -49,4 +49,21 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.delete("/:id", async (req, res, next) => {
+  let userId = req.params.id;
+
+  try {
+    let result = await db(`SELECT * FROM users WHERE id = ${userId}`);
+    if (result.data.length === 0) {
+      res.status(404).send({ error: "Student not found" });
+    } else {
+      await db(`DELETE FROM users WHERE id = ${userId}`);
+      let result = await db("SELECT * FROM users");
+      res.send(result.data);
+    }
+  } catch (err) {
+    res.status(500).send({ error: err.message });
+  }
+});
+
 module.exports = router;
