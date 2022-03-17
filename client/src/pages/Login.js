@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { Routes, Route, useNavigate } from 'react-router-dom';
+// import { Routes, Route, useNavigate } from 'react-router-dom';
 import './Login.css';
 import GoogleLogin from 'react-google-login';
 
@@ -12,7 +12,6 @@ function Login() {
   );
 
   const handleLogin = async googleData => {
-    console.log('this is the data', googleData);
     const res = await fetch("/login", {
         method: "POST",
         body: JSON.stringify({
@@ -69,8 +68,12 @@ function Login() {
                     {loginData ? (
                       <div>
                         <h3> You logged in as {loginData.email}</h3>
-                        <img src={loginData.picture}/>
-                        <button className="btn btn-danger" onClick={handleLogout}>Logout</button>
+                        <div>
+                          <img src={loginData.picture}/>
+                        </div>
+                        <div>
+                          <button className="btn btn-danger" onClick={handleLogout}>Logout</button>
+                        </div>
                       </div>
                     ) : (
                     <GoogleLogin
