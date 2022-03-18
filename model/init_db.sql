@@ -2,15 +2,17 @@ DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    first_name VARCHAR(250) NOT NULL,
-    last_name VARCHAR(250) NOT NULL,
-    bio VARCHAR(250) NOT NULL
+    given_name VARCHAR(250) NOT NULL,
+    family_name VARCHAR(250) NOT NULL,
+    bio VARCHAR(250) NULL,
+    email VARCHAR(200) UNIQUE NOT NULL,
+    picture VARCHAR(300) NOT NULL
 );
 
-INSERT INTO users (first_name, last_name, bio)
+INSERT INTO users (given_name, family_name, bio, email, picture)
 VALUES
-    ('Holly', 'Hanley', 'Awesome junior developer'),
-    ('Gaby', 'Pineda', 'Awesome junior developer');
+    ('Holly', 'Hanley', 'Awesome junior developer', 'holly@gmail.com', "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"),
+    ('Gaby', 'Pineda', 'Awesome junior developer', 'gaby@gmail.com', "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=761&q=80");
 
 
 DROP TABLE IF EXISTS skills;
