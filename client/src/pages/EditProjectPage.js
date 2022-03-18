@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import ProjectsTable from "./ProjectsTable";
 
 const INIT_STATE = {
     p_name: "",
@@ -42,15 +43,15 @@ export default function EditProjectPage() {
         setFormData(INIT_STATE);
       }
 
-      async function editProject(project) {
+      async function editProject(formData) {
         let options = {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(project),
+          body: JSON.stringify(formData),
         };
 
         try {
-            let response = await fetch("/projects", options);
+            let response = await fetch(`/projects/${id}`, options);
             if (response.ok) {
               let projects = await response.json();
               setFormData(projects);
