@@ -15,7 +15,6 @@
     "google-auth-library": "^7.14.0",
     "morgan": "~1.9.1",
     "mysql": "^2.18.1",
-    "nodemon": "^2.0.15",
-    "react-tinder-card": "^1.4.5"
+    "nodemon": "^2.0.15"
   }
 }
