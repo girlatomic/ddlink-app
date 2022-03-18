@@ -22,29 +22,39 @@ import NewEditUserForm from '../pages/NewEditUserForm';
   }
   return (
     <div className="container">
-        <h2>Settings</h2>
-        <div className="text-start mt-5 mb-5">
-          <a href="/newedituserform" class="btn btn-primary">Edit Details</a>
-        </div>
-        <table>
-            <thead>
-            <tr>
-                <th>id</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Bio</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-            <th scope="row">1</th>
-            <td>{userData.first_name}</td>
-            <td>{userData.last_name}</td>
-            <td>{userData.bio}</td>
-            </tr>
-            </tbody>
-            </table>
-        </div>
+        <h2>Profile</h2>
+        <div className="container mt-5 mb-5">
+          <div className="row no-gutters">
+              <div className="col-md-4 col-lg-4">
+                <img src={userData.picture} className="profile"/>
+              </div>
+              <div className="col-md-8 col-lg-8">
+                  <div className="d-flex flex-column">
+                      <div className="d-flex justify-content-between align-items-center">
+                          <h3 className="display-4">{userData.given_name} {userData.family_name}</h3><i className="fa fa-facebook"></i><i className="fa fa-google"></i><i className="fa fa-youtube-play"></i><i className="fa fa-dribbble"></i><i className="fa fa-linkedin"></i>
+                      </div>
+                      <div className="p-3 bg-black text-white">
+                          <h6>{userData.bio}</h6>
+                      </div>
+                      <div className="d-flex flex-row text-white">
+                          <div className="p-3 bg-primary text-center skill-block">
+                              <h6>Bootstrap</h6>
+                          </div>
+                          <div className="p-3 bg-success text-center skill-block">
+                              <h6>Jquery</h6>
+                          </div>
+                          <div className="p-3 bg-warning text-center skill-block">
+                              <h6>HTML</h6>
+                          </div>
+                          <div className="p-3 bg-danger text-center skill-block">
+                              <h6>PHP</h6>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
   )
 }
 
