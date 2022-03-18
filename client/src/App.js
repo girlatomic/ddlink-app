@@ -10,11 +10,13 @@ import NewEditUserForm from './pages/NewEditUserForm';
 import Login from './pages/Login';
 import ProjectsTable from './pages/ProjectsTable';
 import EditProjectPage from './pages/EditProjectPage';
+import Navbar from "./components/NavBar";
 
 
 function App() {
   return (
     <div>
+      <Navbar />
       <Routes>
          <Route path="/mainpage" element={<MainPage />} />
          <Route path="/chatpage" element={<ChatPage />} />
