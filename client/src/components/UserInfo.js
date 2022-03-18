@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import NewEditUserForm from '../pages/NewEditUserForm';
 
 
  function UserInfo() {
@@ -23,7 +24,7 @@ import React, { useState, useEffect } from 'react'
     <div className="container">
         <h2>Settings</h2>
         <div className="text-start mt-5 mb-5">
-          <button className="btn btn-primary" role="button">Edit Details</button>
+          <a href="/newedituserform" class="btn btn-primary">Edit Details</a>
         </div>
         <table>
             <thead>
