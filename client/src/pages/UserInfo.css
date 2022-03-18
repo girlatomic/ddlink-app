@@ -1,0 +1,43 @@
+table {
+    margin-top: 20px;
+    border-collapse: collapse;
+    border-spacing: 10;
+    width: 100%;
+    display: table;
+    box-sizing: border-box;
+    text-align: center;
+    border-color: rgb(12, 19, 235);
+    font-variant: normal;
+}
+
+table thead {
+    background: #ffffff;
+    color: rgb(17, 59, 230);
+    text-align: center;
+    margin-left: 20px;
+    vertical-align: bottom;
+    display: table-header-group;
+    padding:20px;
+    font-weight: bolder;
+}
+
+tr {
+    display: table-row;
+    vertical-align: middle;
+    border: 1px solid #3216eb;
+}
+
+td {
+    border-bottom: 1px solid #3323ec;
+    font-size: inherit;
+    margin: 0;
+    overflow: visible;
+    padding: 0.3em 1em;
+}
+
+img {
+    width: 250px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}

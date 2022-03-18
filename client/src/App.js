@@ -9,6 +9,7 @@ import SettingsPage from './pages/SettingsPage';
 import NewEditUserForm from './pages/NewEditUserForm';
 import Login from './pages/Login';
 import ProjectsTable from './pages/ProjectsTable';
+import EditProjectPage from './pages/EditProjectPage';
 import Navbar from "./components/NavBar";
 
 
@@ -24,6 +25,7 @@ function App() {
          <Route path="/newedituserform" element={<NewEditUserForm />} />
          <Route path="/login" element={<Login />} />
          <Route path="/projectstable" element={<ProjectsTable />} />
+         <Route path="/editprojectpage/:id" element={<EditProjectPage />} />
       </Routes>
     </div>
   );
