@@ -65,7 +65,7 @@ h2 {
   color: #fff;
 }
 
-.card-text {
+.sub-card-container {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -75,12 +75,13 @@ h2 {
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.25rem;
-  transform: translate(0, 120%);
+  transform: translate(0, 160%);
 }
 
-.card-body {
+.sub-card-text {
   flex: 1 1 auto;
   padding: 1rem 1rem;
+  text-overflow: ellipsis;
 }
 
 .btn-cont {
