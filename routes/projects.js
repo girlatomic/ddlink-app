@@ -50,4 +50,15 @@ router.post("/", async (req, res) => {
   }
 });
 
+//PUT request to edit project
+
+router.put('/projects/:id', (req, res) => {
+  let project = getProject(req.params.id)
+ 
+  if (!project) return res.status(404).json({})
+ 
+  ({ p_name, p_description, p_img } = req.body.name)
+  res.json(user)
+ })
+
 module.exports = router;
