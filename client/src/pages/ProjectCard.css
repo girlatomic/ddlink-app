@@ -3,7 +3,7 @@
   display: flex;
   justify-content: center;
   width: 100vw;
-  min-height: 100vh;
+  min-height: 90vh;
   overflow: hidden;
 }
 
@@ -15,8 +15,6 @@
 }
 
 .sub-container > div {
-  /* display: flex; */
-  /* flex-direction: column; */
   justify-content: center;
   align-items: center;
   display: inline-block;
@@ -39,7 +37,6 @@ h2 {
   width: 90vw;
   max-width: 260px;
   height: 380px;
-  /* U */
 }
 
 .cards {
@@ -81,16 +78,15 @@ h2 {
 .sub-card-text {
   flex: 1 1 auto;
   padding: 1rem 1rem;
-  text-overflow: ellipsis;
 }
 
 .btn-cont {
-  transform: translate(0, 50%);
+  margin-bottom: 0px;
 }
 .button-group {
-  margin: 20px;
+  /* margin: 20px; */
   display: flex;
-  transform: translate(0, 150%);
+  transform: translate(0, 120%);
 }
 
 .button-group button {

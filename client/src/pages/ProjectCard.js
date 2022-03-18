@@ -4,7 +4,7 @@ import "./ProjectCard.css";
 
 function ProjectCard() {
   const [projects, setProjects] = useState([]);
-  console.log("I AM PROJECTS", projects);
+  // console.log("I AM THE PROJECTS", projects);
 
   const [currentIndex, setCurrentIndex] = useState(); //projects.length - 1
   const [lastDirection, setLastDirection] = useState();
@@ -48,8 +48,6 @@ function ProjectCard() {
   const swiped = (direction, nameToDelete, index) => {
     setLastDirection(direction);
     updateCurrentIndex(index - 1);
-    // setCurrentIndex(index - 1);
-    // setCanGoBack(currentIndex < projects.length - 1);
   };
 
   const outOfFrame = (name, idx) => {
