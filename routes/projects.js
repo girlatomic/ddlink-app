@@ -50,15 +50,30 @@ router.post("/", async (req, res) => {
   }
 });
 
-//PUT request to edit project
+// PUT request to edit project
 
-router.put('/projects/:id', (req, res) => {
-  let project = getProject(req.params.id)
+router.put('/:id', async (req, res) => {
+  let projectId = req.params.id;
+  console.log(projectId);
  
-  if (!project) return res.status(404).json({})
- 
-  ({ p_name, p_description, p_img } = req.body.name)
-  res.json(user)
- })
+  // if (!projectId) {return res.status(404).json({})} 
+
+ let { p_name, p_description, p_img } = req.body;
+
+  let sql = `
+      UPDATE projects
+      SET p_name = "${p_name}", p_description = "${p_description}", p_img = "${p_img}"
+      WHERE id = ${projectId};
+  `;
+
+  try {
+    await db(sql);
+    let result = await db("SELECT * FROM projects");
+    let projects = result.data;
+    res.status(201).send(projects);
+  } catch (err) {
+    res.status(500).send({ error: err.message });
+  }
+ });
 
 module.exports = router;

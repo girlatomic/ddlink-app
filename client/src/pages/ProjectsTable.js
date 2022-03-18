@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import { Link } from "react-router-dom";
 import './ProjectsTable.css'
 
 
@@ -45,7 +46,7 @@ function ProjectsTable() {
                     <td>{p.p_description}</td>
                     <td><img src={p.p_img}/></td>
                     <td>
-                    <button type="button" className="btn btn-outline-success me-2">Edit</button>
+                    <Link to={`/editprojectpage/${p.id}`} class="btn btn-primary">Edit</Link>
                     <button type="button" className="btn btn-outline-danger">Delete</button>
                   </td>
                 </tr>

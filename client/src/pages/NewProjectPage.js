@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./NewProjectPage.css";
 
 const INIT_STATE = {
@@ -10,6 +10,22 @@ const INIT_STATE = {
 
 export default function NewProjectPage(props) {
   const [formData, setFormData] = useState(INIT_STATE);
+  useEffect(() => {
+    showProjectData()
+  }, []);
+
+  async function showProjectData() {
+    try {
+      let projectDataResults = await fetch(`/projects/1`)
+      if (projectDataResults.ok) {
+        let data = await projectDataResults.json();
+        console.log(data);
+        setFormData(data)
+      }
+    } catch (e) {
+      console.log("network error:", e.message);
+    }
+  }
 
   function handleChange(event) {
     let { name, value } = event.target;
@@ -74,7 +90,7 @@ export default function NewProjectPage(props) {
           <textarea
             className="form-control mb-3"
             rows="3"
-            name="lookingfor"
+            name="p_lookingfor"
             value={formData.lookingfor}
             onChange={handleChange}
           ></textarea>
