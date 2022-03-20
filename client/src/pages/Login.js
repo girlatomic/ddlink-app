@@ -3,38 +3,40 @@ import React, {useState, useEffect} from "react";
 import './Login.css';
 import GoogleLogin from 'react-google-login';
 
-function Login() {
+function Login(props) {
   // const navigate = useNavigate();
-  const [loginData, setLoginData] = useState(
-    localStorage.getItem('loginData')
-      ? JSON.parse(localStorage.getItem('loginData'))
-      : null
-  );
+  // const [user, setUser] = useState(
+  //   localStorage.getItem('loginData')
+  //     ? JSON.parse(localStorage.getItem('loginData'))
+  //     : null
+  // );
 
-  const handleLogin = async googleData => {
-    const res = await fetch("/login", {
-        method: "POST",
-        body: JSON.stringify({
-        token: googleData.tokenId
-      }),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-    const data = await res.json();
-    setLoginData(data);
-    localStorage.setItem('loginData', JSON.stringify(data));
-    // navigate('/projectstable');
-  }
+  // const handleLogin = async googleData => {
+  //   const response = await fetch("/login", {
+  //       method: "POST",
+  //       body: JSON.stringify({
+  //       token: googleData.tokenId
+  //     }),
+  //     headers: {
+  //       "Content-Type": "application/json"
+  //     }
+  //   });
+  //   if (response.ok)
+  //   const data = await res.json();
+  //   console.log('this is data', data);
+  //   setLoginData(data);
+  //   localStorage.setItem('loginData', JSON.stringify(data));
+  //   // navigate('/projectstable');
+  // }
 
   const handleFailure = (result) => {
     alert(result);
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem('loginData');
-    setLoginData(null);
-  };
+  // const handleLogout = () => {
+  //   localStorage.removeItem('loginData');
+  //   setLoginData(null);
+  // };
   return (
     <div>
         <div className="container">
@@ -65,26 +67,14 @@ function Login() {
                     </div>
                     <hr className="my-4"/>
                     <div className="d-grid mb-2">
-                    {loginData ? (
-                      <div>
-                        <h3> You logged in as {loginData.email}</h3>
-                        <div>
-                          <img src={loginData.picture}/>
-                        </div>
-                        <div>
-                          <button className="btn btn-danger" onClick={handleLogout}>Logout</button>
-                        </div>
-                      </div>
-                    ) : (
-                    <GoogleLogin
-                      clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-                      buttonText="Sign in with Google"
-                      // className="ct-button ct-button--secondary"
-                      onSuccess={handleLogin}
-                      onFailure={handleFailure}
-                      cookiePolicy="single_host_origin"
-                    />
-                    )}
+                      <GoogleLogin
+                        clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+                        buttonText="Sign in with Google"
+                        // className="ct-button ct-button--secondary"
+                        onSuccess={props.googleLogin}
+                        onFailure={handleFailure}
+                        cookiePolicy="single_host_origin"
+                      />
                     </div>
                   </form>
                 </div>
