@@ -34,9 +34,14 @@ function App() {
       setUser(data.user);
   }
 
+  function doLogout() {
+    Local.removeUserInfo();
+    setUser(null);
+  }
+
   return (
     <div>
-      <Navbar user={user} />
+      <Navbar user={user} logoutCb={doLogout} />
       <Routes>
         <Route path="/mainpage" element={<MainPage />} />
         <Route path="/projectcard" element={<ProjectCard />} />
