@@ -1,0 +1,6 @@
+.card-nav {
+  display: flex;
+  justify-content: space-evenly;
+  border-bottom: 1px solid whitesmoke;
+  align-items: center;
+}

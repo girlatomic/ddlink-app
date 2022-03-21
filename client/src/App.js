@@ -12,6 +12,7 @@ import ProjectsTable from "./pages/ProjectsTable";
 import EditProjectPage from "./pages/EditProjectPage";
 import Navbar from "./components/NavBar";
 import ProjectCard from "./pages/ProjectCard";
+import CardNav from "./components/CardNav";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/mainpage" element={<MainPage />} />
+        <Route path="/cardnav" element={<CardNav />} />
         <Route path="/projectcard" element={<ProjectCard />} />
         <Route path="/chatpage" element={<ChatPage />} />
         <Route path="/newprojectpage" element={<NewProjectPage />} />
