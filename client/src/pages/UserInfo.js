@@ -1,40 +1,54 @@
 import React, { useState, useEffect } from 'react'
-import NewEditUserForm from '../pages/NewEditUserForm';
+import NewEditUserForm from './NewEditUserForm';
+import { useParams } from "react-router-dom";
+import Api from '../helpers/Api';
+
 
 
  function UserInfo() {
-    const [userData, setUserData] = useState({});
-  useEffect(() => {
-    showUserData()
-  }, []);
+    const [user, setUser] = useState(null);
+    const [errorMsg, setErrorMsg] = useState('');
+    let { userId } = useParams();
 
-  async function showUserData() {
-    try {
-      let userDataResults = await fetch(`/users/1`)
-      if (userDataResults.ok) {
-        let data = await userDataResults.json();
-        console.log(data);
-        setUserData(data)
-      }
-    } catch (e) {
-      console.log("network error:", e.message);
+    useEffect(() => {
+        fetchProfile();
+    }, []);
+
+    async function fetchProfile() {
+        let response = await Api.getUser(userId);
+        console.log('this is the reesss', response)
+        if (response.ok) {
+            setUser(response.data);
+            setErrorMsg('');
+        } else {
+            setUser(null);
+            setErrorMsg(response.error);
+        }
     }
-  }
+
+    if (errorMsg) {
+        return <h2 style={{ color: 'red' }}>{errorMsg}</h2>
+    }
+
+    if (!user) {
+        return <h2>Loading...</h2>;
+    }
+
   return (
     <div className="container">
         <h2>Profile</h2>
         <div className="container mt-5 mb-5">
           <div className="row no-gutters">
               <div className="col-md-4 col-lg-4">
-                <img src={userData.picture} className="profile"/>
+                <img src={user.picture} className="profile"/>
               </div>
               <div className="col-md-8 col-lg-8">
                   <div className="d-flex flex-column">
                       <div className="d-flex justify-content-between align-items-center">
-                          <h3 className="display-4">{userData.given_name} {userData.family_name}</h3><i className="fa fa-facebook"></i><i className="fa fa-google"></i><i className="fa fa-youtube-play"></i><i className="fa fa-dribbble"></i><i className="fa fa-linkedin"></i>
+                          <h3 className="display-4">{user.given_name} {user.family_name}</h3><i className="fa fa-facebook"></i><i className="fa fa-google"></i><i className="fa fa-youtube-play"></i><i className="fa fa-dribbble"></i><i className="fa fa-linkedin"></i>
                       </div>
                       <div className="p-3 bg-black text-white">
-                          <h6>{userData.bio}</h6>
+                          <h6>{user.bio}</h6>
                       </div>
                       <div className="d-flex flex-row text-white">
                           <div className="p-3 bg-primary text-center skill-block">

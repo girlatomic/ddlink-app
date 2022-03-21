@@ -1,4 +1,5 @@
 var express = require("express");
+const { ensureSameUser } = require("../middleware/guards");
 var router = express.Router();
 const db = require("../model/helper");
 
@@ -14,19 +15,20 @@ router.get("/", async (req, res) => {
 });
 
 // GET user by Id
-router.get("/:id", async (req, res) => {
-  let userId = req.params.id;
+router.get("/:userId", ensureSameUser, async (req, res, next) => {
+  let { userId } = req.params;
+  let sql = 'SELECT * FROM users WHERE id = ' + userId;
 
   try {
-    let results = await db(`SELECT * FROM users WHERE id = ${userId}`);
-    let users = results.data;
-    if (users.length === 0) {
+    let results = await db(sql);
+    let user = results.data[0];
+    if (user.length === 0) {
       res.status(404).send({ error: "User not found" });
     } else {
-      res.send(users[0]);
+      res.send(user);
     }
   } catch (err) {
-    res.status(500).send({ error: err.message });
+    next(err);
   }
 });
 
