@@ -14,6 +14,7 @@ import EditProjectPage from "./pages/EditProjectPage";
 import Navbar from "./components/NavBar";
 import ProjectCard from "./pages/ProjectCard";
 import PrivateRoute from './components/PrivateRoute';
+import CardNav from "./components/CardNav";
 
 function App() {
   const [user, setUser] = useState(Local.getUser());
@@ -44,6 +45,7 @@ function App() {
       <Navbar user={user} logoutCb={doLogout} />
       <Routes>
         <Route path="/mainpage" element={<MainPage />} />
+        <Route path="/cardnav" element={<CardNav />} />
         <Route path="/projectcard" element={<ProjectCard />} />
         <Route path="/chatpage" element={<ChatPage />} />
         <Route path="/newprojectpage" element={<NewProjectPage />} />
