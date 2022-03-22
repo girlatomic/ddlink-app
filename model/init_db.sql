@@ -2,7 +2,7 @@ SET foreign_key_checks = 0;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS skills;
 DROP TABLE IF EXISTS projects;
-DROP TABLE IF EXISTS skills_projects;
+DROP TABLE IF EXISTS projects_skills;
 SET foreign_key_checks = 1;
 
 CREATE TABLE users (
