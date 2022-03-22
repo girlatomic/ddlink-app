@@ -4,7 +4,6 @@ import './ProjectsTable.css'
 
 
 function ProjectsTable() {
-  let navigate = useNavigate();
   let [projects, setProjects] = useState([]);
   let {id} = useParams();
 
@@ -27,7 +26,6 @@ function ProjectsTable() {
         console.log(event.target.value);
         event.preventDefault();
         deleteProject(event.target.value);
-        navigate("/settingspage");
       }
 
       async function deleteProject(project) {
