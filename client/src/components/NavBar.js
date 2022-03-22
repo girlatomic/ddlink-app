@@ -36,7 +36,7 @@ export default function NavBar(props) {
                 )
               :
                 (
-                  <ul className="navbar-nav">
+                  <ul className="navbar-nav ms-auto mb-2 mb-lg-0 g-3">
                     <li className="d-flex">
                       <Link to="/login" className="nav-link"><i className="fab fa-solid fa-circle-user"></i> Login </Link>
                     </li>
