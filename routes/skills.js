@@ -37,18 +37,46 @@ const db = require("../model/helper");
 
 
 // Convert DB results into a useful JSON format: author obj with nested array of book objs
-function joinToJson(results) {
+// function joinToJson(results) {
+//   // Get first row
+//   let row0 = results.data[0];
+
+//   // Create array of project objs
+//   let projects = [];
+//   if (row0.projectId) {
+//       projects = results.data.map(p => ({
+//           id: p.projectId,
+//           p_name: p.p_name,
+//           p_description: p.p_description,
+//           p_img: p.p_img
+//       }));
+//   }
+
+//   // Create skill obj
+//   let skill = {
+//       id: row0.skillId,
+//       s_role: row0.s_role,
+//       skill_name: row0.skill_name,
+//       projects
+//   };
+
+//   return skill;
+// }
+
+function joinToJsonUs(results) {
   // Get first row
   let row0 = results.data[0];
 
-  // Create array of project objs
-  let projects = [];
-  if (row0.projectId) {
-      projects = results.data.map(p => ({
-          id: p.projectId,
-          p_name: p.p_name,
-          p_description: p.p_description,
-          p_img: p.p_img
+  // Create array of user objs
+  let users = [];
+  if (row0.userId) {
+      users = results.data.map(u => ({
+          id: u.userId,
+          given_name: u.given_name,
+          family_name: u.family_name,
+          bio: u.bio,
+          email: u.email,
+          picture: u.picture
       }));
   }
 
@@ -57,7 +85,7 @@ function joinToJson(results) {
       id: row0.skillId,
       s_role: row0.s_role,
       skill_name: row0.skill_name,
-      projects
+      users
   };
 
   return skill;
@@ -78,7 +106,32 @@ router.get('/', async function(req, res) {
   }
 });
 
-// GET skill by ID
+// GET skill by ID for projects
+// router.get('/:id', ensureSkillExists, async function(req, res) {
+//   // If we get here we know the author exists (thanks to guard)
+//   let skill = res.locals.skill;
+
+//   try {
+//       // Get skill; use LEFT JOIN to also return projects
+//       let sql = `
+//           SELECT s.*, p.*, s.id AS skillId, p.id AS projectId
+//           FROM skills AS s
+//           LEFT JOIN projects_skills AS ps ON s.id = ps.skillId
+//           LEFT JOIN projects AS p ON ps.projectId = p.id
+//           WHERE s.id = ${skill.id}
+//       `;
+
+//       let results = await db(sql);
+//       // Convert DB results into "sensible" JSON
+//       skill = joinToJson(results);
+
+//       res.send(skill);
+//   } catch (err) {
+//       res.status(500).send({ error: err.message });
+//   }
+// });
+
+// GET skill by ID for users
 router.get('/:id', ensureSkillExists, async function(req, res) {
   // If we get here we know the author exists (thanks to guard)
   let skill = res.locals.skill;
@@ -86,18 +139,18 @@ router.get('/:id', ensureSkillExists, async function(req, res) {
   try {
       // Get skill; use LEFT JOIN to also return projects
       let sql = `
-          SELECT s.*, p.*, s.id AS skillId, p.id AS projectId
+          SELECT s.*, u.*, s.id AS skillId, u.id AS userId
           FROM skills AS s
-          LEFT JOIN projects_skills AS ps ON s.id = ps.skillId
-          LEFT JOIN projects AS p ON ps.projectId = p.id
+          LEFT JOIN users_skills AS us ON s.id = us.skillId
+          LEFT JOIN users AS u ON us.userId = u.id
           WHERE s.id = ${skill.id}
       `;
 
       let results = await db(sql);
       // Convert DB results into "sensible" JSON
-      author = joinToJson(results);
+      skill = joinToJsonUs(results);
 
-      res.send(author);
+      res.send(skill);
   } catch (err) {
       res.status(500).send({ error: err.message });
   }

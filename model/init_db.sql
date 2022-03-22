@@ -3,6 +3,7 @@ DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS skills;
 DROP TABLE IF EXISTS projects;
 DROP TABLE IF EXISTS projects_skills;
+DROP TABLE IF EXISTS users_skills;
 SET foreign_key_checks = 1;
 
 CREATE TABLE users (
@@ -70,3 +71,17 @@ VALUES
     (2, 1),
     (2, 2),
     (2, 3);
+
+CREATE TABLE users_skills (
+    userId INT NOT NULL,
+    skillId INT NOT NULL,
+    PRIMARY KEY (userId, skillId),
+    FOREIGN KEY (userId) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (skillId) REFERENCES skills(id) ON DELETE CASCADE
+);
+
+INSERT INTO users_skills (userId, skillId)
+VALUES
+    (2, 5),
+    (2, 6),
+    (2, 8);

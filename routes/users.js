@@ -3,6 +3,46 @@ const { ensureSameUser } = require("../middleware/guards");
 var router = express.Router();
 const db = require("../model/helper");
 
+// async function ensureUserExists(req, res, next) {
+//   try {
+//       let results = await db(`SELECT * FROM users WHERE id = ${req.params.id}`);
+//       if (results.data.length === 1) {
+//           // Project was found; save it in response obj for the route function to use
+//           res.locals.project = results.data[0];
+//           // Let next middleware function run
+//           next();
+//       } else {
+//           res.status(404).send({ error: 'User not found' });
+//       }
+//   } catch (err) {
+//       res.status(500).send({ error: err.message });
+//   }
+// }
+
+function joinToJson(results) {
+  let row0 = results.data[0];
+
+  // Create skills array
+  let skills = results.data.map(row => ({
+      id: row.skillId,
+      s_role: row.s_role,
+      skill_name: row.skill_name,
+  }));
+
+  // Create user obj
+  let user = {
+      id: row0.userId,
+      given_name: row0.given_name,
+      family_name: row0.family_name,
+      bio: row0.bio,
+      email: row0.email,
+      picture: row0.picture,
+      skills
+  }
+
+  return user;
+}
+
 // GET all users
 router.get("/", async (req, res) => {
   try {
@@ -25,6 +65,17 @@ router.get("/:userId", ensureSameUser, async (req, res, next) => {
     if (user.length === 0) {
       res.status(404).send({ error: "User not found" });
     } else {
+      let sql = `
+          SELECT u.*, s.*, u.id AS userId, s.id AS skillId
+          FROM users AS u
+          LEFT JOIN users_skills AS us ON u.id = us.userId
+          LEFT JOIN skills AS s ON us.skillId = s.id
+          WHERE u.id = ${user.id}
+      `;
+      let results = await db(sql);
+      // Convert DB results into "sensible" JSON
+      user = joinToJson(results);
+
       res.send(user);
     }
   } catch (err) {
