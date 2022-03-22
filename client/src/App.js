@@ -13,9 +13,10 @@ import ProjectsTable from "./pages/ProjectsTable";
 import EditProjectPage from "./pages/EditProjectPage";
 import Navbar from "./components/NavBar";
 import ProjectCard from "./pages/ProjectCard";
-import PrivateRoute from "./components/PrivateRoute";
-import EditUser from "./pages/EditUser";
+import PrivateRoute from './components/PrivateRoute';
+import CardNav from "./components/CardNav";
 import Home from "./pages/Home";
+import EditUser from "./pages/EditUser";
 
 function App() {
   const [user, setUser] = useState(Local.getUser());
@@ -46,8 +47,6 @@ function App() {
       <Navbar user={user} logoutCb={doLogout} />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/mainpage" element={<MainPage />} />
-        <Route path="/cardnav" element={<CardNav />} />
         <Route path="/mainpage" element={<MainPage user={user} />} />
         <Route path="/projectcard" element={<ProjectCard />} />
         <Route path="/chatpage" element={<ChatPage />} />
