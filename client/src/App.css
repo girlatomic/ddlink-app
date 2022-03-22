@@ -8,3 +8,10 @@ h2 {
   color: rgb(94, 94, 94);
   padding: 5px;
 }
+
+.logo {
+  width: 150px !important;
+  height: 30px;
+  object-fit: contain;
+  border-radius: 0 !important;
+}
