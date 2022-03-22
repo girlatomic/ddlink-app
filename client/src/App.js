@@ -14,6 +14,7 @@ import EditProjectPage from "./pages/EditProjectPage";
 import Navbar from "./components/NavBar";
 import ProjectCard from "./pages/ProjectCard";
 import PrivateRoute from "./components/PrivateRoute";
+import EditUser from "./pages/EditUser";
 
 function App() {
   const [user, setUser] = useState(Local.getUser());
@@ -48,6 +49,7 @@ function App() {
         <Route path="/chatpage" element={<ChatPage />} />
         <Route path="/newprojectpage" element={<NewProjectPage />} />
         <Route path="/newedituserform" element={<NewEditUserForm />} />
+        <Route path="/edituser/:userId" element={<EditUser />} />
         <Route
           path="/login"
           element={<Login googleLogin={handleGoogleLogin} />}
