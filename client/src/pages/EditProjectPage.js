@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import ProjectsTable from "./ProjectsTable";
 
 const INIT_STATE = {
@@ -10,6 +10,7 @@ const INIT_STATE = {
   };
 
 export default function EditProjectPage() {
+  let navigate = useNavigate();
     const [formData, setFormData] = useState(INIT_STATE);
     let {id} = useParams();
     useEffect(() => {
@@ -55,6 +56,7 @@ export default function EditProjectPage() {
             if (response.ok) {
               let projects = await response.json();
               setFormData(projects);
+              navigate("/settingspage");
             } else {
               console.log(`Server error: ${response.status} ${response.statusText}`);
             }

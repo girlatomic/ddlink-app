@@ -10,22 +10,6 @@ const INIT_STATE = {
 
 export default function NewProjectPage(props) {
   const [formData, setFormData] = useState(INIT_STATE);
-  useEffect(() => {
-    showProjectData()
-  }, []);
-
-  async function showProjectData() {
-    try {
-      let projectDataResults = await fetch(`/projects/1`)
-      if (projectDataResults.ok) {
-        let data = await projectDataResults.json();
-        console.log(data);
-        setFormData(data)
-      }
-    } catch (e) {
-      console.log("network error:", e.message);
-    }
-  }
 
   function handleChange(event) {
     let { name, value } = event.target;
