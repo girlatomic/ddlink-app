@@ -14,7 +14,6 @@ import EditProjectPage from "./pages/EditProjectPage";
 import Navbar from "./components/NavBar";
 import ProjectCard from "./pages/ProjectCard";
 import PrivateRoute from './components/PrivateRoute';
-import CardNav from "./components/CardNav";
 import Home from "./pages/Home";
 import EditUser from "./pages/EditUser";
 
