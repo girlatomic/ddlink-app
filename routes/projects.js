@@ -34,27 +34,27 @@ const db = require("../model/helper");
 //   res.send(results.data);
 // }
 
-function joinToJson(results) {
-  let row0 = results.data[0];
+// function joinToJson(results) {
+//   let row0 = results.data[0];
 
-  // Create authors array
-  let skills = results.data.map(row => ({
-      id: row.skillId,
-      s_role: row.s_role,
-      skill_name: row.skill_name,
-  }));
+//   // Create authors array
+//   let skills = results.data.map(row => ({
+//       id: row.skillId,
+//       s_role: row.s_role,
+//       skill_name: row.skill_name,
+//   }));
 
-  // Create book obj
-  let project = {
-      id: row0.projectId,
-      p_name: row0.p_name,
-      p_description: row0.p_description,
-      p_img: row0.p_img,
-      skills
-  }
+//   // Create book obj
+//   let project = {
+//       id: row0.projectId,
+//       p_name: row0.p_name,
+//       p_description: row0.p_description,
+//       p_img: row0.p_img,
+//       skills
+//   }
 
-  return project;
-}
+//   return project;
+// }
 
 
 
