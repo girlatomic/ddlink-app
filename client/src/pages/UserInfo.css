@@ -41,3 +41,8 @@ img {
     object-fit: cover;
     border-radius: 10px;
 }
+
+ul {
+    display: flex;
+    margin: 0px;
+}

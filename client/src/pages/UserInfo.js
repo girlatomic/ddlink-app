@@ -48,22 +48,24 @@ import Api from '../helpers/Api';
                           <h3 className="display-4">{user.given_name} {user.family_name}</h3><i className="fa fa-facebook"></i><i className="fa fa-google"></i><i className="fa fa-youtube-play"></i><i className="fa fa-dribbble"></i><i className="fa fa-linkedin"></i>
                       </div>
                       <div className="p-3 bg-black text-white">
-                          <h6>{user.bio}</h6>
+                          <h6>{user.skills[0].s_role}</h6>
                       </div>
-                      <div className="d-flex flex-row text-white">
-                          <div className="p-3 bg-primary text-center skill-block">
-                              <h6>Bootstrap</h6>
+                      <div>
+                           <ul className="ps-0 pt-2" key={user.id}>
+                                  {user.skills.map(s => (
+                                     <li className="badge bg-success p-3 me-2" key={s.id}>{s.skill_name}</li>
+                                  ))}
+                            </ul>
+                      </div>
+                          {/* <div className="p-3 bg-primary text-center skill-block">
+                              <h6>{user.skills[0].skill_name}</h6>
                           </div>
                           <div className="p-3 bg-success text-center skill-block">
-                              <h6>Jquery</h6>
+                              <h6>{user.skills[1].skill_name}</h6>
                           </div>
                           <div className="p-3 bg-warning text-center skill-block">
-                              <h6>HTML</h6>
-                          </div>
-                          <div className="p-3 bg-danger text-center skill-block">
-                              <h6>PHP</h6>
-                          </div>
-                      </div>
+                              <h6>{user.skills[2].skill_name}</h6>
+                          </div> */}
                   </div>
               </div>
           </div>

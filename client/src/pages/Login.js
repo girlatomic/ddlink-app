@@ -4,39 +4,11 @@ import './Login.css';
 import GoogleLogin from 'react-google-login';
 
 function Login(props) {
-  // const navigate = useNavigate();
-  // const [user, setUser] = useState(
-  //   localStorage.getItem('loginData')
-  //     ? JSON.parse(localStorage.getItem('loginData'))
-  //     : null
-  // );
-
-  // const handleLogin = async googleData => {
-  //   const response = await fetch("/login", {
-  //       method: "POST",
-  //       body: JSON.stringify({
-  //       token: googleData.tokenId
-  //     }),
-  //     headers: {
-  //       "Content-Type": "application/json"
-  //     }
-  //   });
-  //   if (response.ok)
-  //   const data = await res.json();
-  //   console.log('this is data', data);
-  //   setLoginData(data);
-  //   localStorage.setItem('loginData', JSON.stringify(data));
-  //   // navigate('/projectstable');
-  // }
 
   const handleFailure = (result) => {
     alert(result);
   };
 
-  // const handleLogout = () => {
-  //   localStorage.removeItem('loginData');
-  //   setLoginData(null);
-  // };
   return (
     <div>
         <div className="container">
