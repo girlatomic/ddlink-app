@@ -3,7 +3,6 @@ import NewEditUserForm from "./NewEditUserForm";
 import { useParams, Link } from "react-router-dom";
 import Api from '../helpers/Api';
 import Local from '../helpers/Local';
-import Api from "../helpers/Api";
 import EditUser from "./EditUser";
 
 function UserInfo() {
