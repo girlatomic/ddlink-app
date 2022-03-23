@@ -156,4 +156,25 @@ router.put('/:id', async (req, res) => {
   }
  });
 
+// DELETE project request
+
+ router.delete('/:id', async (req, res) => {
+  let projectId = req.params.id;
+  console.log(projectId)
+
+  let sql = `
+      DELETE FROM projects
+      WHERE id = ${projectId};
+  `;
+  
+  try {
+    await db(sql);
+    let result = await db("SELECT * FROM projects");
+    let projects = result.data;
+    res.status(201).send(projects);
+  } catch (err) {
+    res.status(500).send({error: err.message});
+  }
+ });
+
 module.exports = router;

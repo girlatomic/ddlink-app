@@ -5,10 +5,10 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Link } from "react-router-dom";
 import "./CardNav.css";
 
-const CardNav = () => {
+const CardNav = (props) => {
   return (
     <div className="card-nav">
-      <Link to="/settingspage">
+      <Link to={`/users/${props.user.id}`}>
         <IconButton>
           <DisplaySettingsIcon
             color="primary"
@@ -17,6 +17,7 @@ const CardNav = () => {
           />
         </IconButton>
       </Link>
+      {/* If user is logged in then show him/her their setting page else display login page */}
       <Link to="/settingspage">
         <IconButton>
           <FavoriteIcon

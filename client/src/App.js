@@ -1,6 +1,6 @@
 import "./App.css";
-import Local from './helpers/Local';
-import Api from './helpers/Api';
+import Local from "./helpers/Local";
+import Api from "./helpers/Api";
 import React, { useState, useEffect } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import MainPage from "./pages/MainPage";
@@ -14,7 +14,8 @@ import EditProjectPage from "./pages/EditProjectPage";
 import Navbar from "./components/NavBar";
 import ProjectCard from "./pages/ProjectCard";
 import PrivateRoute from './components/PrivateRoute';
-import CardNav from "./components/CardNav";
+import Home from "./pages/Home";
+import EditUser from "./pages/EditUser";
 
 function App() {
   const [user, setUser] = useState(Local.getUser());
@@ -23,7 +24,7 @@ function App() {
     const res = await fetch("/login", {
       method: "POST",
       body: JSON.stringify({
-      token: googleData.tokenId
+        token: googleData.tokenId,
       }),
       headers: {
         "Content-Type": "application/json"
@@ -44,20 +45,27 @@ function App() {
     <div>
       <Navbar user={user} logoutCb={doLogout} />
       <Routes>
-        <Route path="/mainpage" element={<MainPage />} />
-        <Route path="/cardnav" element={<CardNav />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/mainpage" element={<MainPage user={user} />} />
         <Route path="/projectcard" element={<ProjectCard />} />
         <Route path="/chatpage" element={<ChatPage />} />
         <Route path="/newprojectpage" element={<NewProjectPage />} />
         <Route path="/newedituserform" element={<NewEditUserForm />} />
-        <Route path="/login" element={<Login googleLogin={handleGoogleLogin} />} />
+        <Route path="/edituser/:userId" element={<EditUser />} />
+        <Route
+          path="/login"
+          element={<Login googleLogin={handleGoogleLogin} />}
+        />
         <Route path="/projectstable" element={<ProjectsTable />} />
         <Route path="/editprojectpage/:id" element={<EditProjectPage />} />
-        <Route path="/users/:userId" element={
-          <PrivateRoute>
-            <SettingsPage />
-          </PrivateRoute>
-        } />
+        <Route
+          path="/users/:userId"
+          element={
+            <PrivateRoute>
+              <SettingsPage />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </div>
   );

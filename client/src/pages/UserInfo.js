@@ -1,42 +1,42 @@
-import React, { useState, useEffect } from 'react'
-import NewEditUserForm from './NewEditUserForm';
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import NewEditUserForm from "./NewEditUserForm";
+import { useParams, Link } from "react-router-dom";
 import Api from '../helpers/Api';
 import Local from '../helpers/Local';
+import Api from "../helpers/Api";
+import EditUser from "./EditUser";
 
+function UserInfo() {
+  const [user, setUser] = useState(null);
+  const [errorMsg, setErrorMsg] = useState("");
+  let { userId } = useParams();
 
+  useEffect(() => {
+    fetchProfile();
+  }, []);
 
- function UserInfo() {
-    const [user, setUser] = useState(null);
-    const [errorMsg, setErrorMsg] = useState('');
-    let { userId } = useParams();
-
-    useEffect(() => {
-        fetchProfile();
-    }, []);
-
-    async function fetchProfile() {
-        let response = await Api.getUser(userId);
-        console.log('this is the reesss', response)
-        if (response.ok) {
+  async function fetchProfile() {
+      let response = await Api.getUser(userId);
+      console.log('this is the reesss', response)
+      if (response.ok) {
             const data = response.data;
             console.log('this data', data);
             Local.saveUserSkills(data)
             setUser(data);
             setErrorMsg('');
-        } else {
+      } else {
             setUser(null);
             setErrorMsg(response.error);
-        }
-    }
-
-    if (errorMsg) {
-        return <h2 style={{ color: 'red' }}>{errorMsg}</h2>
-    }
-
-    if (!user) {
+      }
+      if (errorMsg) {
+        return <h2 style={{ color: "red" }}>{errorMsg}</h2>;
+      }
+    
+      if (!user) {
         return <h2>Loading...</h2>;
-    }
+      }
+  }
+  
 
   return (
     <div className="container">
@@ -52,6 +52,9 @@ import Local from '../helpers/Local';
                           <h3 className="display-4">{user.given_name} {user.family_name}</h3><i className="fa fa-facebook"></i><i className="fa fa-google"></i><i className="fa fa-youtube-play"></i><i className="fa fa-dribbble"></i><i className="fa fa-linkedin"></i>
                       </div>
                       <div className="p-3 bg-black text-white">
+                        <h6>{user.bio}</h6>
+                      </div>
+                      <div className="p-3 bg-black text-white">
                           <h6>{user.skills[0].s_role}</h6>
                       </div>
                       <div>
@@ -61,21 +64,16 @@ import Local from '../helpers/Local';
                                   ))}
                             </ul>
                       </div>
-                          {/* <div className="p-3 bg-primary text-center skill-block">
-                              <h6>{user.skills[0].skill_name}</h6>
-                          </div>
-                          <div className="p-3 bg-success text-center skill-block">
-                              <h6>{user.skills[1].skill_name}</h6>
-                          </div>
-                          <div className="p-3 bg-warning text-center skill-block">
-                              <h6>{user.skills[2].skill_name}</h6>
-                          </div> */}
-                  </div>
-              </div>
+                    </div>
+                </div>
           </div>
-      </div>
+  
+        </div>
+      <Link to={`/edituser/${userId}`} className="btn btn-primary">
+        Edit profile
+      </Link>
     </div>
-  )
+  );
 }
 
 export default UserInfo;

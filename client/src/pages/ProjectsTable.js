@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from "react";
-import { Link } from "react-router-dom";
 import './ProjectsTable.css';
 import Local from '../helpers/Local';
+import { Link, useNavigate } from "react-router-dom";
 
 
 function ProjectsTable() {
+  let navigate = useNavigate();
   let [projects, setProjects] = useState([]);
 
     const getProjects = () => {
@@ -28,11 +29,38 @@ function ProjectsTable() {
         getProjects();
       }, []);
 
+      function handleClick(event) {
+        console.log(event.target.value);
+        event.preventDefault();
+        deleteProject(event.target.value);
+        navigate("/settingspage");
+      }
+
+      async function deleteProject(project) {
+        let options = {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" }
+        };
+    
+        try {
+          let id = project;
+          // console.log(id);
+          let response = await fetch(`/projects/${id}`, options);
+          if (response.ok) {
+            let projects = await response.json();
+            getProjects(projects);
+          } else {
+            console.log(`Server error: ${response.status} ${response.statusText}`);
+          }
+        } catch (err) {
+          console.log(`Server error: ${err.message}`);
+        }
+      }
+
   return (
     <div className="container">
         <h2>My Projects</h2>
         <div className="text-start mt-5 mb-5">
-          {/* <button className="btn btn-primary" role="button"></button> */}
           <a href="/newprojectpage" className="btn btn-primary">+ Add Project</a>
         </div>
         <table>
@@ -54,7 +82,7 @@ function ProjectsTable() {
                     <td><img src={p.p_img}/></td>
                     <td>
                     <Link to={`/editprojectpage/${p.id}`} class="btn btn-primary">Edit</Link>
-                    <button type="button" className="btn btn-outline-danger">Delete</button>
+                    <button type="button" className="btn btn-outline-danger" value={p.id} onClick={handleClick}>Delete</button>
                   </td>
                 </tr>
                 ))
