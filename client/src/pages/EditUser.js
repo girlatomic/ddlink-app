@@ -6,6 +6,7 @@ import Api from "../helpers/Api";
 const INIT_STATE = {
   given_name: "",
   family_name: "",
+  s_role: "",
   bio: "",
   email: "",
   picture: "",
@@ -93,6 +94,23 @@ export default function EditUser() {
           />
         </div>
         <div className="form-group">
+          <label>Role :</label>
+          <input
+            type="radio"
+            value="Developer"
+            name="role"
+            style={{ marginLeft: "10px" }}
+          />{" "}
+          Developer
+          <input
+            type="radio"
+            value="Designer"
+            name="role"
+            style={{ marginLeft: "10px" }}
+          />{" "}
+          Designer
+        </div>
+        <div className="form-group">
           <label>Bio</label>
           <textarea
             className="form-control mb-3"
@@ -122,7 +140,6 @@ export default function EditUser() {
             onChange={handleChange}
           />
         </div>
-
         <button type="submit" className="btn btn-primary">
           Submit
         </button>
