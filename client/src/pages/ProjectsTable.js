@@ -1,13 +1,20 @@
 import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
-import './ProjectsTable.css'
+import './ProjectsTable.css';
+import Local from '../helpers/Local';
 
 
 function ProjectsTable() {
   let [projects, setProjects] = useState([]);
 
     const getProjects = () => {
-    fetch("/projects")
+      let user = Local.getUserSkills();
+      console.log('thisis user from local', user);
+      //make a comma separated list of skill ids
+      let skillId = user.skills.map(s => (s.id))
+      let skillIdList = skillId.join(",")
+      console.log('this skillId', skillIdList)
+     fetch(`/projects?skills=${skillIdList}`)
       .then(response => response.json())
       .then(projects => {
         setProjects(projects);
