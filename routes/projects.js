@@ -63,7 +63,7 @@ function joinToJson(results) {
  * Routes
  **/
 
-// Filter GET all projects for skills that are being passed
+// GET all projects
 router.get('/', async function(req, res) {
   try {
       sendAllProjects(res);

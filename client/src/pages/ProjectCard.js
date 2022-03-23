@@ -1,6 +1,9 @@
 import React, { useState, useMemo, useRef, useEffect } from "react";
+import Local from '../helpers/Local';
 import TinderCard from "react-tinder-card";
 import "./ProjectCard.css";
+import Api from '../helpers/Api';
+import { useParams } from "react-router-dom";
 
 function ProjectCard() {
   const [projects, setProjects] = useState([]);
@@ -10,6 +13,13 @@ function ProjectCard() {
   const [lastDirection, setLastDirection] = useState();
 
   const getProjects = () => {
+    //get user from local storage
+    let user = Local.getUserSkills();
+    console.log('thisis user from local', user);
+    //make a comma separated list of skill ids
+    let skillId = user.skills.map(s => (s.id))
+    console.log('this skillId', skillId)
+    // fetch(`/projects?skills={5,6,8}`)
     fetch("/projects")
       .then((response) => response.json())
       .then((projects) => {

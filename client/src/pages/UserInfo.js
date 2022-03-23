@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import NewEditUserForm from './NewEditUserForm';
 import { useParams } from "react-router-dom";
 import Api from '../helpers/Api';
+import Local from '../helpers/Local';
 
 
 
@@ -18,7 +19,10 @@ import Api from '../helpers/Api';
         let response = await Api.getUser(userId);
         console.log('this is the reesss', response)
         if (response.ok) {
-            setUser(response.data);
+            const data = response.data;
+            console.log('this data', data);
+            Local.saveUserSkills(data)
+            setUser(data);
             setErrorMsg('');
         } else {
             setUser(null);

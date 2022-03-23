@@ -30,7 +30,7 @@ function App() {
       }
       });
       const data = await res.json()
-      console.log('this is the response data', data.user)
+      console.log('this is the response data', data)
       Local.saveUserInfo(data.token, data.user);
       setUser(data.user);
   }

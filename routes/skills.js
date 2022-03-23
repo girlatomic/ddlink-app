@@ -118,7 +118,7 @@ router.get('/:id/projects', ensureSkillExists, async function(req, res) {
           FROM skills AS s
           LEFT JOIN projects_skills AS ps ON s.id = ps.skillId
           LEFT JOIN projects AS p ON ps.projectId = p.id
-          WHERE s.id in (5,8)
+          WHERE s.id in (5,6,8)
       `;
 
       let results = await db(sql);

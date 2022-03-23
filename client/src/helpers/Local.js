@@ -9,6 +9,10 @@ class Local {
         localStorage.setItem('token', token);
         localStorage.setItem('user', JSON.stringify(user));
     }
+
+    static saveUserSkills(data) {
+        localStorage.setItem('userSkills', JSON.stringify(data));
+    }
     
     static removeUserInfo() {
         localStorage.removeItem('token');
@@ -21,6 +25,11 @@ class Local {
     
     static getUser() {
         let userjson = localStorage.getItem('user');
+        return userjson ? JSON.parse(userjson) : null;
+    }
+
+    static getUserSkills() {
+        let userjson = localStorage.getItem('userSkills');
         return userjson ? JSON.parse(userjson) : null;
     }
 
