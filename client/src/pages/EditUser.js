@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Api from "../helpers/Api";
 
 const INIT_STATE = {
   given_name: "",
   family_name: "",
+  s_role: "",
   bio: "",
   email: "",
   picture: "",
@@ -13,6 +13,8 @@ const INIT_STATE = {
 
 export default function EditUser() {
   const [formData, setFormData] = useState(INIT_STATE);
+  const navigate = useNavigate();
+
   // console.log("I AM FD", formData);
   let { userId } = useParams();
   useEffect(() => {
@@ -22,9 +24,9 @@ export default function EditUser() {
   async function showUserData() {
     try {
       let userDataResults = await Api.getUser(userId);
+
       console.log("BBBB", userDataResults);
       if (userDataResults.ok) {
-        // let data = await userDataResults.json();
         setFormData(userDataResults.data);
       }
     } catch (e) {
@@ -34,6 +36,7 @@ export default function EditUser() {
 
   function handleChange(event) {
     let { name, value } = event.target;
+    console.log("VAL", value, name);
     setFormData((data) => ({
       ...data,
       [name]: value,
@@ -58,6 +61,7 @@ export default function EditUser() {
       if (response.ok) {
         let users = await response.json();
         setFormData(users);
+        navigate(`/users/${userId}`, { replace: true });
       } else {
         console.log(`Server error: ${response.status} ${response.statusText}`);
       }
@@ -93,6 +97,25 @@ export default function EditUser() {
           />
         </div>
         <div className="form-group">
+          <label>Role :</label>
+          <input
+            type="radio"
+            value={"Developer"}
+            name="s_role"
+            onChange={handleChange}
+            style={{ marginLeft: "10px" }}
+          />{" "}
+          Developer
+          <input
+            type="radio"
+            value={"Designer"}
+            name="s_role"
+            onChange={handleChange}
+            style={{ marginLeft: "10px" }}
+          />{" "}
+          Designer
+        </div>
+        <div className="form-group">
           <label>Bio</label>
           <textarea
             className="form-control mb-3"
@@ -122,7 +145,6 @@ export default function EditUser() {
             onChange={handleChange}
           />
         </div>
-
         <button type="submit" className="btn btn-primary">
           Submit
         </button>

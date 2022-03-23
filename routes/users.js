@@ -17,7 +17,7 @@ router.get("/", async (req, res) => {
 // GET user by Id
 router.get("/:userId", ensureSameUser, async (req, res, next) => {
   let { userId } = req.params;
-  let sql = 'SELECT * FROM users WHERE id = ' + userId;
+  let sql = "SELECT * FROM users WHERE id = " + userId;
 
   try {
     let results = await db(sql);
@@ -48,6 +48,28 @@ router.post("/", async (req, res) => {
     res.status(201).send(users);
   } catch (err) {
     res.status(500).send({ error: err.message });
+  }
+});
+
+// EDIT USER PROFILE
+router.put("/:userId", async (req, res, next) => {
+  let { userId } = req.params;
+  let { s_role, bio } = req.body;
+
+  let sql = `SELECT * FROM users WHERE id = ${userId} `;
+  let update = `UPDATE users SET bio = '${bio}', s_role = '${s_role}' WHERE id = ${userId}`;
+
+  try {
+    await db(update);
+    let results = await db(sql);
+    let user = results.data[0];
+    if (user.length === 0) {
+      res.status(404).send({ error: "User not found" });
+    } else {
+      res.send(user);
+    }
+  } catch (err) {
+    next(err);
   }
 });
 

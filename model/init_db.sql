@@ -6,14 +6,16 @@ CREATE TABLE users (
     family_name VARCHAR(250) NOT NULL,
     bio VARCHAR(250) NULL,
     email VARCHAR(200) UNIQUE NOT NULL,
-    picture VARCHAR(300) NOT NULL
+    picture VARCHAR(300) NOT NULL,
+    s_role VARCHAR (100) 
 );
 
-INSERT INTO users (given_name, family_name, bio, email, picture)
+INSERT INTO users (given_name, family_name, bio, email, picture, s_role)
 VALUES
-    ('Holly', 'Hanley', 'Awesome junior developer', 'holly@gmail.com', "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"),
-    ('Gaby', 'Pineda', 'Awesome junior developer', 'gaby@gmail.com', "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=761&q=80");
-
+    ('Holly', 'Hanley', 'Awesome junior developer', 'holly@gmail.com', "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80", "Developer"),
+    ('Gaby', 'Pineda', 'Awesome junior developer', 'gaby@gmail.com', "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=761&q=80", "Designer");
+    
+   
 
 DROP TABLE IF EXISTS skills;
 
