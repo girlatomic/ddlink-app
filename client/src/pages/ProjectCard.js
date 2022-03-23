@@ -18,9 +18,10 @@ function ProjectCard() {
     console.log('thisis user from local', user);
     //make a comma separated list of skill ids
     let skillId = user.skills.map(s => (s.id))
-    console.log('this skillId', skillId)
+    let skillIdList = skillId.join(",")
+    console.log('this skillId', skillIdList)
     // fetch(`/projects?skills={5,6,8}`)
-    fetch("/projects")
+    fetch(`/projects?skills=${skillIdList}`)
       .then((response) => response.json())
       .then((projects) => {
         setProjects(projects);

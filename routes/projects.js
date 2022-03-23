@@ -7,32 +7,32 @@ const db = require("../model/helper");
  **/
 
 
- async function ensureProjectExists(req, res, next) {
-  try {
-      let results = await db(`SELECT * FROM projects WHERE id = ${req.params.id}`);
-      if (results.data.length === 1) {
-          // Project was found; save it in response obj for the route function to use
-          res.locals.project = results.data[0];
-          // Let next middleware function run
-          next();
-      } else {
-          res.status(404).send({ error: 'Project not found' });
-      }
-  } catch (err) {
-      res.status(500).send({ error: err.message });
-  }
-}
+//  async function ensureProjectExists(req, res, next) {
+//   try {
+//       let results = await db(`SELECT * FROM projects WHERE id = ${req.params.id}`);
+//       if (results.data.length === 1) {
+//           // Project was found; save it in response obj for the route function to use
+//           res.locals.project = results.data[0];
+//           // Let next middleware function run
+//           next();
+//       } else {
+//           res.status(404).send({ error: 'Project not found' });
+//       }
+//   } catch (err) {
+//       res.status(500).send({ error: err.message });
+//   }
+// }
 
 /**
  * Helpers
  **/
 
 
- async function sendAllProjects(res) {
-  // We don't need try/catch here because we're always called from within one
-  let results = await db('SELECT * FROM projects');
-  res.send(results.data);
-}
+//  async function sendAllProjects(res) {
+//   // We don't need try/catch here because we're always called from within one
+//   let results = await db('SELECT * FROM projects');
+//   res.send(results.data);
+// }
 
 function joinToJson(results) {
   let row0 = results.data[0];
@@ -64,38 +64,52 @@ function joinToJson(results) {
  **/
 
 // GET all projects
-router.get('/', async function(req, res) {
-  try {
-      sendAllProjects(res);
-  } catch (err) {
-      res.status(500).send({ error: err.message });
-  }
-});
+// router.get('/', async function(req, res) {
+//   try {
+//       (res);
+//   } catch (err) {
+//       res.status(500).send({ error: err.message });
+//   }
+// });
+
+
+router.get('/', async (req, res) => {
+  let { skills } = req.query;  // skills === '2,4,6'
+  let sql = `
+    SELECT DISTINCT p.* FROM projects AS p 
+    LEFT JOIN projects_skills AS ps ON p.id = ps.projectId
+    LEFT JOIN skills AS s ON ps.skillId = s.id
+    WHERE ps.skillId IN (${skills})
+  `;
+  let results = await db(sql);
+  // project = joinToJson(results);
+  res.send(results.data);
+})
 
 // GET project by Id
-router.get('/:id', ensureProjectExists, async function(req, res) {
-  // If we get here we know the book exists (thanks to guard)
-  let project = res.locals.project;
+// router.get('/:id', ensureProjectExists, async function(req, res) {
+//   // If we get here we know the book exists (thanks to guard)
+//   let project = res.locals.project;
 
-  try {
-      // Get project; we know it exists, thanks to guard
-      // Use LEFT JOIN to also return authors and publisher
-      let sql = `
-          SELECT p.*, s.*, p.id AS projectId, s.id AS skillId
-          FROM projects AS p
-          LEFT JOIN projects_skills AS ps ON p.id = ps.projectId
-          LEFT JOIN skills AS s ON ps.skillId = s.id
-          WHERE p.id = ${project.id}
-      `;
-      let results = await db(sql);
-      // Convert DB results into "sensible" JSON
-      project = joinToJson(results);
+//   try {
+//       // Get project; we know it exists, thanks to guard
+//       // Use LEFT JOIN to also return authors and publisher
+//       let sql = `
+//           SELECT p.*, s.*, p.id AS projectId, s.id AS skillId
+//           FROM projects AS p
+//           LEFT JOIN projects_skills AS ps ON p.id = ps.projectId
+//           LEFT JOIN skills AS s ON ps.skillId = s.id
+//           WHERE p.id = ${project.id}
+//       `;
+//       let results = await db(sql);
+//       // Convert DB results into "sensible" JSON
+//       project = joinToJson(results);
 
-      res.send(project);
-  } catch (err) {
-      res.status(500).send({ error: err.message });
-  }
-});
+//       res.send(project);
+//   } catch (err) {
+//       res.status(500).send({ error: err.message });
+//   }
+// });
 
 // POST new project
 router.post("/", async (req, res) => {
