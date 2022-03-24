@@ -37,6 +37,7 @@ function joinToJson(results) {
       bio: row0.bio,
       email: row0.email,
       picture: row0.picture,
+      s_role: row0.s_role,
       skills
   }
 

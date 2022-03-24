@@ -17,6 +17,7 @@ class Local {
     static removeUserInfo() {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
+        localStorage.removeItem('userSkills');
     }
     
     static getToken() {

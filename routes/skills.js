@@ -76,7 +76,8 @@ function joinToJsonUs(results) {
           family_name: u.family_name,
           bio: u.bio,
           email: u.email,
-          picture: u.picture
+          picture: u.picture,
+          s_role: u.s_role
       }));
   }
 

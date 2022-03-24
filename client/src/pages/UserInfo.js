@@ -27,14 +27,16 @@ function UserInfo() {
             setUser(null);
             setErrorMsg(response.error);
       }
-      if (errorMsg) {
-        return <h2 style={{ color: "red" }}>{errorMsg}</h2>;
-      }
-    
-      if (!user) {
-        return <h2>Loading...</h2>;
-      }
   }
+      
+  if (errorMsg) {
+      return <h2 style={{ color: "red" }}>{errorMsg}</h2>;
+  }
+    
+  if (!user) {
+      return <h2>Loading...</h2>;
+  }
+  
   
 
   return (
@@ -68,9 +70,9 @@ function UserInfo() {
           </div>
   
         </div>
-      <Link to={`/edituser/${userId}`} className="btn btn-primary">
-        Edit profile
-      </Link>
+        <Link to={`/edituser/${userId}`} className="btn btn-primary">
+         Edit profile
+        </Link>
     </div>
   );
 }
