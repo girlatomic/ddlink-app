@@ -19,9 +19,7 @@ import EditUser from "./pages/EditUser";
 import ProjectModal from "./components/ProjectModal";
 
 function App() {
-  const [user, setUser] = useState(null);
-  const [errorMsg, setErrorMsg] = useState("");
-  let { userId } = useParams();
+  const [user, setUser] = useState(Local.getUser());
 
   const handleGoogleLogin = async (googleData) => {
     const res = await fetch("/login", {
@@ -43,26 +41,6 @@ function App() {
     Local.removeUserInfo();
     setUser(null);
   }
-  
-  useEffect(() => {
-    fetchProfile();
-  }, []);
-
-  async function fetchProfile() {
-      let response = await Api.getUser(userId);
-      console.log('this is the reesss', response)
-      if (response.ok) {
-            const data = response.data;
-            console.log('this data', data);
-            Local.saveUserSkills(data)
-            setUser(data);
-            setErrorMsg('');
-      } else {
-            setUser(null);
-            setErrorMsg(response.error);
-      }
-  }
-
 
   return (
     <div>
