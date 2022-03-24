@@ -7,21 +7,21 @@ const db = require("../model/helper");
  **/
 
 
-//  async function ensureProjectExists(req, res, next) {
-//   try {
-//       let results = await db(`SELECT * FROM projects WHERE id = ${req.params.id}`);
-//       if (results.data.length === 1) {
-//           // Project was found; save it in response obj for the route function to use
-//           res.locals.project = results.data[0];
-//           // Let next middleware function run
-//           next();
-//       } else {
-//           res.status(404).send({ error: 'Project not found' });
-//       }
-//   } catch (err) {
-//       res.status(500).send({ error: err.message });
-//   }
-// }
+ async function ensureProjectExists(req, res, next) {
+  try {
+      let results = await db(`SELECT * FROM projects WHERE id = ${req.params.id}`);
+      if (results.data.length === 1) {
+          // Project was found; save it in response obj for the route function to use
+          res.locals.project = results.data[0];
+          // Let next middleware function run
+          next();
+      } else {
+          res.status(404).send({ error: 'Project not found' });
+      }
+  } catch (err) {
+      res.status(500).send({ error: err.message });
+  }
+}
 
 /**
  * Helpers
@@ -34,27 +34,27 @@ const db = require("../model/helper");
 //   res.send(results.data);
 // }
 
-// function joinToJson(results) {
-//   let row0 = results.data[0];
+function joinToJson(results) {
+  let row0 = results.data[0];
 
-//   // Create authors array
-//   let skills = results.data.map(row => ({
-//       id: row.skillId,
-//       s_role: row.s_role,
-//       skill_name: row.skill_name,
-//   }));
+  // Create authors array
+  let skills = results.data.map(row => ({
+      id: row.skillId,
+      s_role: row.s_role,
+      skill_name: row.skill_name,
+  }));
 
-//   // Create book obj
-//   let project = {
-//       id: row0.projectId,
-//       p_name: row0.p_name,
-//       p_description: row0.p_description,
-//       p_img: row0.p_img,
-//       skills
-//   }
+  // Create book obj
+  let project = {
+      id: row0.projectId,
+      p_name: row0.p_name,
+      p_description: row0.p_description,
+      p_img: row0.p_img,
+      skills
+  }
 
-//   return project;
-// }
+  return project;
+}
 
 
 
@@ -92,45 +92,45 @@ router.get('/', async (req, res) => {
 })
 
 // GET project by Id
-router.get("/:id", async (req, res) => {
-  let projectId = req.params.id;
-
-  try {
-    let results = await db(`SELECT * FROM projects WHERE id = ${projectId}`);
-    let projects = results.data;
-    if (projects.length === 0) {
-      res.status(404).send({ error: "Project not found" });
-    } else {
-      res.send(projects[0]);
-    }
-  } catch (err) {
-    res.status(500).send({ error: err.message });
-  }
-});
-
-// router.get('/:id', ensureProjectExists, async function(req, res) {
-//   // If we get here we know the book exists (thanks to guard)
-//   let project = res.locals.project;
+// router.get("/:id", async (req, res) => {
+//   let projectId = req.params.id;
 
 //   try {
-//       // Get project; we know it exists, thanks to guard
-//       // Use LEFT JOIN to also return authors and publisher
-//       let sql = `
-//           SELECT p.*, s.*, p.id AS projectId, s.id AS skillId
-//           FROM projects AS p
-//           LEFT JOIN projects_skills AS ps ON p.id = ps.projectId
-//           LEFT JOIN skills AS s ON ps.skillId = s.id
-//           WHERE p.id = ${project.id}
-//       `;
-//       let results = await db(sql);
-//       // Convert DB results into "sensible" JSON
-//       project = joinToJson(results);
-
-//       res.send(project);
+//     let results = await db(`SELECT * FROM projects WHERE id = ${projectId}`);
+//     let projects = results.data;
+//     if (projects.length === 0) {
+//       res.status(404).send({ error: "Project not found" });
+//     } else {
+//       res.send(projects[0]);
+//     }
 //   } catch (err) {
-//       res.status(500).send({ error: err.message });
+//     res.status(500).send({ error: err.message });
 //   }
 // });
+
+router.get('/:id', ensureProjectExists, async function(req, res) {
+  // If we get here we know the book exists (thanks to guard)
+  let project = res.locals.project;
+
+  try {
+      // Get project; we know it exists, thanks to guard
+      // Use LEFT JOIN to also return authors and publisher
+      let sql = `
+          SELECT p.*, s.*, p.id AS projectId, s.id AS skillId
+          FROM projects AS p
+          LEFT JOIN projects_skills AS ps ON p.id = ps.projectId
+          LEFT JOIN skills AS s ON ps.skillId = s.id
+          WHERE p.id = ${project.id}
+      `;
+      let results = await db(sql);
+      // Convert DB results into "sensible" JSON
+      project = joinToJson(results);
+
+      res.send(project);
+  } catch (err) {
+      res.status(500).send({ error: err.message });
+  }
+});
 
 // POST new project
 router.post("/", async (req, res) => {
