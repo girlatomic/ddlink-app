@@ -20,6 +20,9 @@ import ProjectModal from "./components/ProjectModal";
 
 function App() {
   const [user, setUser] = useState(Local.getUser());
+  const [userS, setUserS] = useState(null);
+  let { userId } = useParams();
+  const [errorMsg, setErrorMsg] = useState("");
 
   const handleGoogleLogin = async (googleData) => {
     const res = await fetch("/login", {
@@ -42,13 +45,34 @@ function App() {
     setUser(null);
   }
 
+  useEffect(() => {
+    fetchProfile();
+  }, []);
+
+  async function fetchProfile() {
+    let response = await Api.getUser(userId);
+    console.log('this is the reesss2', response)
+    if (response.ok) {
+          const data = response.data;
+          console.log('this data2', data);
+          Local.saveUserSkills(data)
+          setUserS(data);
+          setErrorMsg('');
+    } else {
+          setUser(null);
+          setErrorMsg(response.error);
+    }
+  }
+
+
+
   return (
     <div>
       <Navbar user={user} logoutCb={doLogout} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/mainpage/:userId" element={<MainPage user={user} />} />
-        <Route path="/projectcard" element={<ProjectCard />} />
+        <Route path="/projectcard" element={<ProjectCard user={user}  />} />
         <Route path="/chatpage" element={<ChatPage />} />
         <Route path="/newprojectpage" element={<NewProjectPage user={user} />} />
         <Route path="/newedituserform" element={<NewEditUserForm />} />
