@@ -17,20 +17,20 @@ function ProjectsTable(props) {
       .catch(error => {
         console.log(error);
       });
-    };
+  };
 
-    useEffect(() => {
-        getProjects();
-      }, []);
+  useEffect(() => {
+    getProjects();
+  }, []);
 
-      function handleClick(event) {
+  function handleClick(event) {
         console.log(event.target.value);
         event.preventDefault();
         deleteProject(event.target.value);
         navigate(`/users/${props.user.id}`);
-      }
+  }
 
-      async function deleteProject(project) {
+  async function deleteProject(project) {
         let options = {
           method: "DELETE",
           headers: { "Content-Type": "application/json" }
@@ -49,7 +49,7 @@ function ProjectsTable(props) {
         } catch (err) {
           console.log(`Server error: ${err.message}`);
         }
-      }
+  }
 
   return (
     <div className="container">

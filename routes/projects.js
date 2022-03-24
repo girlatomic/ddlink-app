@@ -92,6 +92,22 @@ router.get('/', async (req, res) => {
 })
 
 // GET project by Id
+router.get("/:id", async (req, res) => {
+  let projectId = req.params.id;
+
+  try {
+    let results = await db(`SELECT * FROM projects WHERE id = ${projectId}`);
+    let projects = results.data;
+    if (projects.length === 0) {
+      res.status(404).send({ error: "Project not found" });
+    } else {
+      res.send(projects[0]);
+    }
+  } catch (err) {
+    res.status(500).send({ error: err.message });
+  }
+});
+
 // router.get('/:id', ensureProjectExists, async function(req, res) {
 //   // If we get here we know the book exists (thanks to guard)
 //   let project = res.locals.project;
