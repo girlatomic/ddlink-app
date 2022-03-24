@@ -2,7 +2,7 @@ import "./App.css";
 import Local from "./helpers/Local";
 import Api from "./helpers/Api";
 import React, { useState, useEffect } from "react";
-import { Routes, Route, Link, useParams } from "react-router-dom";
+import { Routes, Route, useNavigate, useParams } from "react-router-dom";
 import MainPage from "./pages/MainPage";
 import ChatPage from "./pages/ChatPage";
 import NewProjectPage from "./pages/NewProjectPage";
@@ -23,6 +23,7 @@ function App() {
   const [userS, setUserS] = useState(null);
   let { userId } = useParams();
   const [errorMsg, setErrorMsg] = useState("");
+  let navigate = useNavigate();
 
   const handleGoogleLogin = async (googleData) => {
     const res = await fetch("/login", {
@@ -38,6 +39,7 @@ function App() {
       console.log('this is the response data', data)
       Local.saveUserInfo(data.token, data.user);
       setUser(data.user);
+      navigate(`/mainpage/${data.user.id}`);
   }
 
   function doLogout() {
