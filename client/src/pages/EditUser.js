@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Api from "../helpers/Api";
 
@@ -12,6 +12,7 @@ const INIT_STATE = {
 };
 
 export default function EditUser() {
+  let navigate = useNavigate();
   const [formData, setFormData] = useState(INIT_STATE);
   // console.log("I AM FD", formData);
   let { userId } = useParams();
@@ -58,6 +59,7 @@ export default function EditUser() {
       if (response.ok) {
         let users = await response.json();
         setFormData(users);
+        navigate("/settings");
       } else {
         console.log(`Server error: ${response.status} ${response.statusText}`);
       }
@@ -89,6 +91,43 @@ export default function EditUser() {
             className="form-control"
             name="family_name"
             value={formData.family_name}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <label>Skills</label>
+          </div>
+          <div>
+          <label>JavaScript</label>
+          <input
+            type="checkbox"
+            // className="form-control"
+            name="javascript"
+            value={formData.skill_name}
+            onChange={handleChange}
+          />
+          <label>Python</label>
+          <input
+            type="checkbox"
+            // className="form-control"
+            name="python"
+            value={formData.skill_name}
+            onChange={handleChange}
+          />
+          <label>Express</label>
+          <input
+            type="checkbox"
+            // className="form-control"
+            name="express"
+            value={formData.skill_name}
+            onChange={handleChange}
+          />
+          <label>Express</label>
+          <input
+            type="checkbox"
+            // className="form-control"
+            name="react"
+            value={formData.skill_name}
             onChange={handleChange}
           />
         </div>
