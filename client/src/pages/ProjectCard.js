@@ -109,7 +109,7 @@ function ProjectCard() {
   return (
     <div id="root-container">
       <div className="sub-container">
-        <h1>DDLink</h1>
+        <img src="/img/logo-color.svg" className="logo-color"/>
         <div className="cardContainer">
           {projects.map((project, index) => (
             <div key={project.id}>

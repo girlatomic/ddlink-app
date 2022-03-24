@@ -56,10 +56,10 @@ function UserInfo() {
                       <div className="d-flex justify-content-between align-items-center">
                           <h3 className="display-4">{user.given_name} {user.family_name}</h3><i className="fa fa-facebook"></i><i className="fa fa-google"></i><i className="fa fa-youtube-play"></i><i className="fa fa-linkedin"></i>
                       </div>
-                      <div className="p-3 bg-black text-white">
+                      <div className="p-2 bg-black text-white">
                           <h5>{user.skills[1].s_role}</h5>
                       </div>
-                      <div className="p-3 bg-secondary text-white">
+                      <div className="p-3 border border-primary">
                         <h5>About me</h5>
                         <p>{user.bio}</p>
                       </div>

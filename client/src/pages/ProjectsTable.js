@@ -57,32 +57,34 @@ function ProjectsTable(props) {
          + Add a project
         </Link>
         </div>
-        <table>
-            <thead>
-            <tr>
-                <th>id</th>
-                <th>Project Name</th>
-                <th>Description</th>
-                <th>Image</th>
-                <th>Actions</th>
-            </tr>
-            </thead>
-            <tbody>
-            {projects.map(p => (
-                <tr key={p.id}>
-                    <td>{p.id}</td>
-                    <td>{p.p_name}</td>
-                    <td>{p.p_description}</td>
-                    <td><img src={p.p_img}/></td>
-                    <td>
-                    <Link to={`/editprojectpage/${p.id}`} class="btn btn-primary">Edit</Link>
-                    <button type="button" className="btn btn-outline-danger" value={p.id} onClick={handleClick}>Delete</button>
-                  </td>
-                </tr>
-                ))
-            }
-            </tbody>
-       </table>
+        <div className="table-responsive-lg">
+          <table className="table-responsive">
+              <thead>
+              <tr>
+                  <th>id</th>
+                  <th>Project Name</th>
+                  <th>Description</th>
+                  <th>Image</th>
+                  <th>Actions</th>
+              </tr>
+              </thead>
+              <tbody>
+              {projects.map(p => (
+                  <tr key={p.id}>
+                      <td>{p.id}</td>
+                      <td>{p.p_name}</td>
+                      <td className="ps-0 pt-2">{p.p_description}</td>
+                      <td><img src={p.p_img}/></td>
+                      <td>
+                      <Link to={`/editprojectpage/${p.id}`} class="btn btn-primary">Edit</Link>
+                      <button type="button" className="btn btn-outline-danger" value={p.id} onClick={handleClick}>Delete</button>
+                    </td>
+                  </tr>
+                  ))
+              }
+              </tbody>
+        </table>
+       </div>
     </div>
   )
 }
