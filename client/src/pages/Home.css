@@ -17,3 +17,8 @@
     background-color: rgba(38, 15, 184, 0.838);
     z-index: -1;
 }
+
+h1 {
+    font-family: raleway;
+    font-weight: bold;
+}

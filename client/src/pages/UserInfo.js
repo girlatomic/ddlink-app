@@ -41,22 +41,27 @@ function UserInfo() {
 
   return (
     <div className="container">
-        <h2>Profile</h2>
+        <div className="d-flex justify-content-between align-items-center border-bottom mt-5">
+        <h2>My Profile</h2><Link to={`/edituser/${userId}`} className="btn btn-primary">
+         Edit profile
+        </Link>
+        </div>
         <div className="container mt-5 mb-5">
           <div className="row no-gutters">
-              <div className="col-md-4 col-lg-4">
+              <div className="col-md-4 col-lg-3">
                 <img src={user.picture} className="profile"/>
               </div>
-              <div className="col-md-8 col-lg-8">
+              <div className="col-md-8 col-lg-9">
                   <div className="d-flex flex-column">
                       <div className="d-flex justify-content-between align-items-center">
-                          <h3 className="display-4">{user.given_name} {user.family_name}</h3><i className="fa fa-facebook"></i><i className="fa fa-google"></i><i className="fa fa-youtube-play"></i><i className="fa fa-dribbble"></i><i className="fa fa-linkedin"></i>
+                          <h3 className="display-4">{user.given_name} {user.family_name}</h3><i className="fa fa-facebook"></i><i className="fa fa-google"></i><i className="fa fa-youtube-play"></i><i className="fa fa-linkedin"></i>
                       </div>
                       <div className="p-3 bg-black text-white">
-                        <h6>{user.bio}</h6>
+                          <h5>{user.skills[1].s_role}</h5>
                       </div>
-                      <div className="p-3 bg-black text-white">
-                          <h6>{user.skills[1].s_role}</h6>
+                      <div className="p-3 bg-secondary text-white">
+                        <h5>About me</h5>
+                        <p>{user.bio}</p>
                       </div>
                       <div>
                            <ul className="ps-0 pt-2" key={user.id}>
@@ -68,11 +73,7 @@ function UserInfo() {
                     </div>
                 </div>
           </div>
-  
         </div>
-        <Link to={`/edituser/${userId}`} className="btn btn-primary">
-         Edit profile
-        </Link>
     </div>
   );
 }

@@ -38,7 +38,6 @@ function ProjectsTable(props) {
     
         try {
           let id = project;
-          // console.log(id);
           let response = await fetch(`/projects/${id}`, options);
           if (response.ok) {
             let projects = await response.json();
@@ -53,9 +52,10 @@ function ProjectsTable(props) {
 
   return (
     <div className="container">
-        <h2>My Projects</h2>
-        <div className="text-start mt-5 mb-5">
-          <a href="/newprojectpage" className="btn btn-primary">+ Add Project</a>
+        <div className="d-flex justify-content-between align-items-center border-bottom mt-5 mb-5">
+        <h2>My Projects</h2><Link to={`/newprojectpage`} className="btn btn-primary">
+         + Add a project
+        </Link>
         </div>
         <table>
             <thead>
