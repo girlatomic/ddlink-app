@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./NewProjectPage.css";
 
 const INIT_STATE = {
@@ -10,6 +11,7 @@ const INIT_STATE = {
 
 export default function NewProjectPage(props) {
   const [formData, setFormData] = useState(INIT_STATE);
+  let navigate = useNavigate();
 
   function handleChange(event) {
     let { name, value } = event.target;
@@ -37,6 +39,7 @@ export default function NewProjectPage(props) {
       if (response.ok) {
         let projects = await response.json();
         setFormData(projects);
+        navigate(`/users/${props.user.id}`);
       } else {
         console.log(`Server error: ${response.status} ${response.statusText}`);
       }

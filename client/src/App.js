@@ -49,7 +49,7 @@ function App() {
         <Route path="/mainpage" element={<MainPage user={user} />} />
         <Route path="/projectcard" element={<ProjectCard />} />
         <Route path="/chatpage" element={<ChatPage />} />
-        <Route path="/newprojectpage" element={<NewProjectPage />} />
+        <Route path="/newprojectpage" element={<NewProjectPage user={user} />} />
         <Route path="/newedituserform" element={<NewEditUserForm />} />
         <Route path="/edituser/:userId" element={<EditUser />} />
         <Route
