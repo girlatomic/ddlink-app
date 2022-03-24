@@ -41,6 +41,7 @@ function Login(props) {
                     <div className="d-grid mb-2">
                       <GoogleLogin
                         clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+                        prompt="select_account"
                         buttonText="Sign in with Google"
                         // className="ct-button ct-button--secondary"
                         onSuccess={props.googleLogin}
