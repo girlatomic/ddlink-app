@@ -15,7 +15,6 @@ const INIT_STATE = {
 export default function EditUser() {
   let navigate = useNavigate();
   const [formData, setFormData] = useState(INIT_STATE);
-  const navigate = useNavigate();
 
   // console.log("I AM FD", formData);
   let { userId } = useParams();
