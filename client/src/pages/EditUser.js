@@ -6,6 +6,7 @@ import Api from "../helpers/Api";
 const INIT_STATE = {
   given_name: "",
   family_name: "",
+  s_role: "",
   bio: "",
   email: "",
   picture: "",
@@ -14,6 +15,8 @@ const INIT_STATE = {
 export default function EditUser() {
   let navigate = useNavigate();
   const [formData, setFormData] = useState(INIT_STATE);
+  const navigate = useNavigate();
+
   // console.log("I AM FD", formData);
   let { userId } = useParams();
   useEffect(() => {
@@ -23,9 +26,9 @@ export default function EditUser() {
   async function showUserData() {
     try {
       let userDataResults = await Api.getUser(userId);
+
       console.log("BBBB", userDataResults);
       if (userDataResults.ok) {
-        // let data = await userDataResults.json();
         setFormData(userDataResults.data);
       }
     } catch (e) {
@@ -35,6 +38,7 @@ export default function EditUser() {
 
   function handleChange(event) {
     let { name, value } = event.target;
+    console.log("VAL", value, name);
     setFormData((data) => ({
       ...data,
       [name]: value,
@@ -59,7 +63,7 @@ export default function EditUser() {
       if (response.ok) {
         let users = await response.json();
         setFormData(users);
-        navigate("/settings");
+        navigate(`/users/${userId}`, { replace: true });
       } else {
         console.log(`Server error: ${response.status} ${response.statusText}`);
       }
@@ -95,41 +99,23 @@ export default function EditUser() {
           />
         </div>
         <div className="form-group">
-          <label>Skills</label>
-          </div>
-          <div>
-          <label>JavaScript</label>
+          <label>Role :</label>
           <input
-            type="checkbox"
-            // className="form-control"
-            name="javascript"
-            value={formData.skill_name}
+            type="radio"
+            value={"Developer"}
+            name="s_role"
             onChange={handleChange}
-          />
-          <label>Python</label>
+            style={{ marginLeft: "10px" }}
+          />{" "}
+          Developer
           <input
-            type="checkbox"
-            // className="form-control"
-            name="python"
-            value={formData.skill_name}
+            type="radio"
+            value={"Designer"}
+            name="s_role"
             onChange={handleChange}
-          />
-          <label>Express</label>
-          <input
-            type="checkbox"
-            // className="form-control"
-            name="express"
-            value={formData.skill_name}
-            onChange={handleChange}
-          />
-          <label>Express</label>
-          <input
-            type="checkbox"
-            // className="form-control"
-            name="react"
-            value={formData.skill_name}
-            onChange={handleChange}
-          />
+            style={{ marginLeft: "10px" }}
+          />{" "}
+          Designer
         </div>
         <div className="form-group">
           <label>Bio</label>
@@ -161,7 +147,6 @@ export default function EditUser() {
             onChange={handleChange}
           />
         </div>
-
         <button type="submit" className="btn btn-primary">
           Submit
         </button>

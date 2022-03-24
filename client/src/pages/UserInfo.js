@@ -59,7 +59,7 @@ function UserInfo() {
               </div>
 
               <div className="p-3 bg-black text-white">
-                <h6>Developer</h6>
+                <h6>{user.s_role}</h6>
               </div>
               <div className="d-flex flex-row text-white">
                 <div className="p-3 bg-primary text-center skill-block">
@@ -79,7 +79,7 @@ function UserInfo() {
           </div>
         </div>
       </div>
-      {/* <EditUser /> */}
+
       <Link to={`/edituser/${userId}`} className="btn btn-primary">
         Edit profile
       </Link>

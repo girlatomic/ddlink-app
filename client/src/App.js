@@ -13,7 +13,8 @@ import ProjectsTable from "./pages/ProjectsTable";
 import EditProjectPage from "./pages/EditProjectPage";
 import Navbar from "./components/NavBar";
 import ProjectCard from "./pages/ProjectCard";
-import PrivateRoute from "./components/PrivateRoute";
+import PrivateRoute from './components/PrivateRoute';
+import Home from "./pages/Home";
 import EditUser from "./pages/EditUser";
 import ProjectModal from "./components/ProjectModal";
 
@@ -45,6 +46,7 @@ function App() {
     <div>
       <Navbar user={user} logoutCb={doLogout} />
       <Routes>
+        <Route path="/" element={<Home />} />
         <Route path="/mainpage" element={<MainPage user={user} />} />
         <Route path="/projectcard" element={<ProjectCard />} />
         <Route path="/chatpage" element={<ChatPage />} />
