@@ -2,7 +2,7 @@ import "./App.css";
 import Local from "./helpers/Local";
 import Api from "./helpers/Api";
 import React, { useState, useEffect } from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link, useParams } from "react-router-dom";
 import MainPage from "./pages/MainPage";
 import ChatPage from "./pages/ChatPage";
 import NewProjectPage from "./pages/NewProjectPage";
@@ -18,7 +18,9 @@ import Home from "./pages/Home";
 import EditUser from "./pages/EditUser";
 
 function App() {
-  const [user, setUser] = useState(Local.getUser());
+  const [user, setUser] = useState(null);
+  const [errorMsg, setErrorMsg] = useState("");
+  let { userId } = useParams();
 
   const handleGoogleLogin = async (googleData) => {
     const res = await fetch("/login", {
@@ -40,13 +42,33 @@ function App() {
     Local.removeUserInfo();
     setUser(null);
   }
+  
+  useEffect(() => {
+    fetchProfile();
+  }, []);
+
+  async function fetchProfile() {
+      let response = await Api.getUser(userId);
+      console.log('this is the reesss', response)
+      if (response.ok) {
+            const data = response.data;
+            console.log('this data', data);
+            Local.saveUserSkills(data)
+            setUser(data);
+            setErrorMsg('');
+      } else {
+            setUser(null);
+            setErrorMsg(response.error);
+      }
+  }
+
 
   return (
     <div>
       <Navbar user={user} logoutCb={doLogout} />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/mainpage" element={<MainPage user={user} />} />
+        <Route path="/mainpage/:userId" element={<MainPage user={user} />} />
         <Route path="/projectcard" element={<ProjectCard />} />
         <Route path="/chatpage" element={<ChatPage />} />
         <Route path="/newprojectpage" element={<NewProjectPage user={user} />} />

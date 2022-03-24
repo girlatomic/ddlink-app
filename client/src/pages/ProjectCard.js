@@ -6,6 +6,7 @@ import Api from '../helpers/Api';
 import { useParams } from "react-router-dom";
 
 function ProjectCard() {
+  const [user, setUser] = useState(null);
   const [projects, setProjects] = useState([]);
   // console.log("I AM THE PROJECTS", projects);
 
@@ -15,6 +16,7 @@ function ProjectCard() {
   const getProjects = () => {
     //get user from local storage
     let user = Local.getUserSkills();
+    setUser(user);
     console.log('thisis user from local', user);
     //make a comma separated list of skill ids
     let skillId = user.skills.map(s => (s.id))

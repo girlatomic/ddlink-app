@@ -1,7 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 export default function NavBar(props) {
+  let { userId } = useParams();
   return (
     <div>
         <nav className="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
@@ -13,7 +14,7 @@ export default function NavBar(props) {
             <div className="collapse navbar-collapse" id="navbarNav">
               <ul className="navbar-nav">
                     <li className="nav-item">
-                    <Link to="/mainpage" className="nav-link" aria-current="page">Find your project</Link>
+                    <Link to={`/mainpage/${userId}`} className="nav-link" aria-current="page">Find your project</Link>
                     </li>
               </ul>
             </div>
