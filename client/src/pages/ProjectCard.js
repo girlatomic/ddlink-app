@@ -1,6 +1,10 @@
 import React, { useState, useMemo, useRef, useEffect } from "react";
 import TinderCard from "react-tinder-card";
 import "./ProjectCard.css";
+import Noty from "noty";
+
+import "noty/lib/themes/sunset.css";
+import "noty/lib/noty.css";
 import ProjectModal from "../components/ProjectModal";
 
 function ProjectCard() {
@@ -17,7 +21,7 @@ function ProjectCard() {
       .then((response) => response.json())
       .then((projects) => {
         setProjects(projects);
-        setCurrentIndex(projects.length - 1); //!!!!!!
+        setCurrentIndex(projects.length - 1);
       })
       .catch((error) => {
         console.log(error);
@@ -49,12 +53,17 @@ function ProjectCard() {
   const canSwipe = currentIndex >= 0;
 
   const swiped = (direction, nameToDelete, index) => {
+    console.log("1", direction);
     setLastDirection(direction);
     updateCurrentIndex(index - 1);
+    if (direction === "right") {
+      console.log("Hello");
+      likedNotification();
+    }
   };
 
   const outOfFrame = (name, idx) => {
-    console.log(`${name} (${idx}) left the screen!`, currentIndexRef.current);
+    // console.log(`${name} (${idx}) left the screen!`, currentIndexRef.current);
     currentIndexRef.current >= idx && childRefs[idx].current.restoreCard();
   };
 
@@ -71,11 +80,20 @@ function ProjectCard() {
     await childRefs[newIndex].current.restoreCard();
   };
 
+  const likedNotification = () => {
+    new Noty({
+      text: "You liked a project!",
+      type: "success",
+      layout: "centerRight",
+      theme: "sunset",
+      timeout: 2000,
+    }).show();
+  };
   const handleProject = (project) => {
     console.log(project);
-    setShowProject (true)
-    setProject (project)
-  }
+    setShowProject(true);
+    setProject(project);
+  };
 
   return (
     <div id="root-container">
@@ -84,29 +102,30 @@ function ProjectCard() {
         <div className="cardContainer">
           {projects.map((project, index) => (
             <div key={project.id}>
-            <TinderCard
-              key={project.id}
-              ref={childRefs[index]}
-              className="swipe"
-              onSwipe={(dir) => swiped(dir, project.p_name, index)}
-              onCardLeftScreen={() => outOfFrame(project.p_name, index)}
-              preventSwipe={["up", "down"]}
-            >
-              <div
-                style={{ backgroundImage: "url(" + project.p_img + ")" }}
-                className="cards" onClick={() =>  handleProject(project)}
+              <TinderCard
+                key={project.id}
+                ref={childRefs[index]}
+                className="swipe"
+                preventSwipe={["up", "down"]}
+                onSwipe={(dir) => swiped(dir, project.p_name, index)}
+                onCardLeftScreen={() => outOfFrame(project.p_name, index)}
               >
-                <h3>{project.p_name}</h3>
-                <div className="sub-card-container">
-                  <div className="sub-card-text">{project.p_description}</div>
+                <div
+                  style={{ backgroundImage: "url(" + project.p_img + ")" }}
+                  className="cards"
+                  onClick={() => handleProject(project)}
+                >
+                  <h3>{project.p_name}</h3>
                 </div>
-              </div>
-            </TinderCard>
+              </TinderCard>
             </div>
           ))}
-          {showProject &&
-            <ProjectModal project={project} hide= {() => setShowProject (false)}/>
-            }
+          {showProject && (
+            <ProjectModal
+              project={project}
+              hide={() => setShowProject(false)}
+            />
+          )}
         </div>
         <div id="btn-cont">
           <div className="button-group">
@@ -117,7 +136,7 @@ function ProjectCard() {
               Swipe left!
             </button>
             <button
-              style={{ backgroundColor: !canGoBack && "grey" }}
+              style={{ backgroundColor: !canGoBack && "#c3c4d3" }}
               onClick={() => goBack()}
             >
               Undo swipe!
