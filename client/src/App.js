@@ -16,6 +16,7 @@ import ProjectCard from "./pages/ProjectCard";
 import PrivateRoute from './components/PrivateRoute';
 import Home from "./pages/Home";
 import EditUser from "./pages/EditUser";
+import ProjectModal from "./components/ProjectModal";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -74,6 +75,7 @@ function App() {
         <Route path="/newprojectpage" element={<NewProjectPage user={user} />} />
         <Route path="/newedituserform" element={<NewEditUserForm />} />
         <Route path="/edituser/:userId" element={<EditUser />} />
+        <Route path="/projectmodal" element={<ProjectModal />} />
         <Route
           path="/login"
           element={<Login googleLogin={handleGoogleLogin} />}
