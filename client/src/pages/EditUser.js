@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Api from "../helpers/Api";
 
 const INIT_STATE = {
@@ -12,6 +13,7 @@ const INIT_STATE = {
 };
 
 export default function EditUser() {
+  let navigate = useNavigate();
   const [formData, setFormData] = useState(INIT_STATE);
   const navigate = useNavigate();
 
