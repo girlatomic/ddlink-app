@@ -4,18 +4,12 @@ import Local from '../helpers/Local';
 import { Link, useNavigate } from "react-router-dom";
 
 
-function ProjectsTable() {
+function ProjectsTable(props) {
   let navigate = useNavigate();
   let [projects, setProjects] = useState([]);
 
-    const getProjects = () => {
-      let user = Local.getUserSkills();
-      console.log('thisis user from local', user);
-      //make a comma separated list of skill ids
-      let skillId = user.skills.map(s => (s.id))
-      let skillIdList = skillId.join(",")
-      console.log('this skillId', skillIdList)
-     fetch(`/projects?skills=${skillIdList}`)
+  const getProjects = () => {
+    fetch("/projects")
       .then(response => response.json())
       .then(projects => {
         setProjects(projects);
@@ -33,7 +27,7 @@ function ProjectsTable() {
         console.log(event.target.value);
         event.preventDefault();
         deleteProject(event.target.value);
-        navigate("/settingspage");
+        navigate(`/users/${props.user.id}`);
       }
 
       async function deleteProject(project) {

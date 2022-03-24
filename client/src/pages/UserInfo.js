@@ -56,7 +56,7 @@ function UserInfo() {
                         <h6>{user.bio}</h6>
                       </div>
                       <div className="p-3 bg-black text-white">
-                          <h6>{user.skills[0].s_role}</h6>
+                          <h6>{user.skills[1].s_role}</h6>
                       </div>
                       <div>
                            <ul className="ps-0 pt-2" key={user.id}>

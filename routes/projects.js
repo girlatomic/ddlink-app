@@ -75,12 +75,17 @@ const db = require("../model/helper");
 
 router.get('/', async (req, res) => {
   let { skills } = req.query;  // skills === '2,4,6'
-  let sql = `
+  let sql;
+  if (skills) {
+  sql = `
     SELECT DISTINCT p.* FROM projects AS p 
     LEFT JOIN projects_skills AS ps ON p.id = ps.projectId
     LEFT JOIN skills AS s ON ps.skillId = s.id
     WHERE ps.skillId IN (${skills})
   `;
+  } else {
+    sql="SELECT * FROM projects"
+  }
   let results = await db(sql);
   // project = joinToJson(results);
   res.send(results.data);

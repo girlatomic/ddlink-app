@@ -36,7 +36,7 @@ export default function EditUser() {
 
   function handleChange(event) {
     let { name, value } = event.target;
-    console.log("VAL", value, name);
+    // console.log("VAL", value, name);
     setFormData((data) => ({
       ...data,
       [name]: value,
