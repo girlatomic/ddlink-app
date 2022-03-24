@@ -57,7 +57,7 @@ function App() {
           element={<Login googleLogin={handleGoogleLogin} />}
         />
         <Route path="/projectstable" element={<ProjectsTable user={user} />} />
-        <Route path="/editprojectpage/:id" element={<EditProjectPage />} />
+        <Route path="/editprojectpage/:id" element={<EditProjectPage user={user} />} />
         <Route
           path="/users/:userId"
           element={
