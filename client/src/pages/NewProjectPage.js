@@ -72,7 +72,7 @@ export default function NewProjectPage(props) {
             onChange={handleChange}
           />
         </div>
-        <div className="form-group">
+        {/* <div className="form-group">
           <label>Looking for</label>
           <textarea
             className="form-control mb-3"
@@ -81,7 +81,7 @@ export default function NewProjectPage(props) {
             value={formData.lookingfor}
             onChange={handleChange}
           ></textarea>
-        </div>
+        </div> */}
         <div className="form-group">
           <label>Project image</label>
           <input

@@ -30,7 +30,7 @@ export default function MainPage(props) {
   }
 
   return (
-    <div>
+    <div className="mainpage">
       <CardNav user={props.user} />
       <ProjectCard user={props.user}  />
     </div>
