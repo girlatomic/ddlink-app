@@ -12,8 +12,7 @@ h2 {
 }
 
 .logo {
-  width: 150px !important;
+  width: 100px !important;
   height: 30px;
-  object-fit: contain;
   border-radius: 0 !important;
 }
