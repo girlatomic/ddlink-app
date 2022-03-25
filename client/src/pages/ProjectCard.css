@@ -60,7 +60,8 @@ h2 {
   position: absolute;
   bottom: 0;
   margin: 10px;
-  color: rgb(75, 75, 75);
+  color: rgb(255, 254, 254);
+  text-shadow: 1px 2px 2px #0033ff;
 }
 
 .sub-card-container {

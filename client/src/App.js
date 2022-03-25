@@ -39,7 +39,7 @@ function App() {
       console.log('this is the response data', data)
       Local.saveUserInfo(data.token, data.user);
       setUser(data.user);
-      navigate(`/mainpage/${data.user.id}`);
+      navigate(`/`);
   }
 
   function doLogout() {
