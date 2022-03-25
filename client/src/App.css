@@ -4,9 +4,11 @@
 
 h2 {
   margin: 0;
-  font-size: 3rem;
-  color: rgb(31, 31, 31);
+  font-size: 30px;
+  color: rgb(94, 94, 94);
+  border-bottom: rgb(233, 231, 231) 1px solid;
   padding: 5px;
+  font-family: Montserrat;
 }
 
 .logo {

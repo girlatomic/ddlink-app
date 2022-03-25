@@ -51,7 +51,7 @@ export default function NewProjectPage(props) {
   return (
     <div className="container">
       <h2 className="title">Project form</h2>
-      <form onSubmit={handleSubmit}>
+      <form className="pt-4" onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Project name</label>
           <input

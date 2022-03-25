@@ -75,10 +75,10 @@ function ProjectsTable(props) {
                       <td>{p.p_name}</td>
                       <td className="ps-0 pt-2">{p.p_description}</td>
                       <td><img src={p.p_img}/></td>
-                      <td>
-                      <Link to={`/editprojectpage/${p.id}`} class="btn btn-primary">Edit</Link>
-                      <button type="button" className="btn btn-outline-danger" value={p.id} onClick={handleClick}>Delete</button>
-                    </td>
+                      <td className="colspan-2">
+                      <Link to={`/editprojectpage/${p.id}`} class="btn btn-outline-primary">Edit</Link>
+                      <button type="button" className="btn btn-outline-danger mt-2" value={p.id} onClick={handleClick}>Delete</button>
+                      </td>
                   </tr>
                   ))
               }

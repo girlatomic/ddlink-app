@@ -74,11 +74,11 @@ export default function EditUser() {
   return (
     <div className="container">
       <h2 className="title" style={{ color: "black" }}>
-        Edit page
+        Edit your profile
       </h2>
-      <form onSubmit={handleSubmit}>
+      <form className="pt-4" onSubmit={handleSubmit}>
         <div className="form-group">
-          <label>Given name</label>
+          <label>Name</label>
           <input
             type="text"
             className="form-control"
@@ -88,7 +88,7 @@ export default function EditUser() {
           />
         </div>
         <div className="form-group">
-          <label>Family name</label>
+          <label>Last Name</label>
           <input
             type="text"
             className="form-control"
