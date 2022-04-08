@@ -29,10 +29,11 @@ tr {
 
 td {
     border-bottom: 1px solid #3323ec;
-    font-size: inherit;
     margin: 0;
-    overflow: visible;
+    /* overflow: visible; */
     padding: 0.3em 1em;
+    white-space: normal !important; 
+    word-wrap: break-word !important; 
 }
 
 img {
@@ -48,18 +49,12 @@ img {
     object-fit: cover;
 }
 
-.skill-block {
-    width: 30%
-}
 
-@media (min-width: 991px) and (max-width:1200px) {
-    .skill-block {
-        padding: 15px !important
-    }
-}
-
-@media (min-width: 1200px) {
-    .skill-block {
-        padding: 15px !important
-    }
+h2 {
+    margin: 0;
+    font-size: 30px;
+    color: rgb(94, 94, 94);
+    border-bottom: rgb(233, 231, 231) 1px solid;
+    padding: 5px;
+    font-family: Montserrat;
 }

@@ -18,7 +18,8 @@
   justify-content: center;
   align-items: center;
   display: inline-block;
-  height: 50%;
+  height: 38%;
+  padding-top: 10px;
 }
 
 h1 {
@@ -59,7 +60,8 @@ h2 {
   position: absolute;
   bottom: 0;
   margin: 10px;
-  color: #fff;
+  color: rgb(255, 254, 254);
+  text-shadow: 1px 2px 2px #0033ff;
 }
 
 .sub-card-container {
@@ -70,14 +72,14 @@ h2 {
   word-wrap: break-word;
   background-color: #fff;
   background-clip: border-box;
-  border: 1px solid rgba(0, 0, 0, 0.125);
+  border: 1px solid rgba(255, 255, 255, 0.125);
   border-radius: 0.25rem;
   transform: translate(0, 160%);
 }
 
 .sub-card-text {
   flex: 1 1 auto;
-  padding: 1rem 1rem;
+  padding: 2rem 1rem;
 }
 
 .btn-cont {
@@ -86,7 +88,7 @@ h2 {
 .button-group {
   display: flex;
   transform: translate(0, 12%);
-  padding-top: 10%;
+  padding-top: 40px;
 }
 
 .button-group button {
@@ -102,6 +104,17 @@ h2 {
   font-weight: bolder;
   width: 160px;
   box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.1);
+}
+
+.logo-color{
+  display: flex;
+  width: 150px !important;
+  flex-direction: column;
+  height: 40px;
+  object-fit: contain;
+  border-radius: 0 !important;
+  position: relative;
+  margin-bottom: 40px;
 }
 
 .button-group .left-btn:hover {

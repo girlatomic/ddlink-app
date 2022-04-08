@@ -6,25 +6,21 @@ export default function ProjectModal(props) {
 
     return (
 
-    <div className="container">
-    <div className="FeaturedProject" id={props.project.id}>
-    <div className="modal mt-5 mb-5 p-5" tabIndex="-1" style={{ display: 'block' }}>
-      <div className="modal-dialog">
-      <div className="modal-content">
-      <div className="modal-header">
-      <h5 className="modal-title">{props.project.p_name}</h5>
-      <button type="button" className="btn-close" onClick={props.hide}></button>
-    </div>
-    <div className="modal-body">
-    
-    <div className="container-fluid text-center text-wrap">
-  
-    
-    
-        
-        <img className="float-start me-2" style={{ width: '200px' }} src={props.project.p_img} alt="" />
-        <h5>{props.project.p_description}</h5>
-    </div>
+    <div className="container-fluid">
+      <div className="FeaturedProject" id={props.project.id}>
+      <div className="modal mt-5 pt-5" tabIndex="-1" style={{ display: 'block' }}>
+        <div className="modal-dialog mt-5 pt-5 ">
+        <div className="modal-content mt-5">
+        <div className="modal-header">
+        <h5 className="modal-title">{props.project.p_name}</h5>
+        <button type="button" className="btn-close" onClick={props.hide}></button>
+      </div>
+      <div className="modal-body">
+      
+      <div className="container-fluid text-center text-wrap">
+          <img className="float-start me-2" style={{ width: '200px' }} src={props.project.p_img} alt="" />
+          <h5>{props.project.p_description}</h5>
+      </div>
 
     </div>
     

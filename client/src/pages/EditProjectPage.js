@@ -9,7 +9,7 @@ const INIT_STATE = {
     p_img: "",
   };
 
-export default function EditProjectPage() {
+export default function EditProjectPage(props) {
   let navigate = useNavigate();
     const [formData, setFormData] = useState(INIT_STATE);
     let {id} = useParams();
@@ -56,7 +56,7 @@ export default function EditProjectPage() {
             if (response.ok) {
               let projects = await response.json();
               setFormData(projects);
-              navigate("/settingspage");
+              navigate(`/users/${props.user.id}`);
             } else {
               console.log(`Server error: ${response.status} ${response.statusText}`);
             }

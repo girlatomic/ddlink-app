@@ -2,16 +2,25 @@
   text-align: center;
 }
 
+/* .mainpage {
+  background: linear-gradient(
+    160deg,
+    rgb(48, 16, 255) 0%,
+    rgba(56, 73, 228, 0.571) 130%
+  );
+} */
+
 h2 {
   margin: 0;
-  font-size: 3rem;
-  color: rgb(94, 94, 94);
+  font-size: 30px;
+  color: rgba(34, 0, 255, 0.303);
+  border-bottom: rgb(233, 231, 231) 1px solid;
   padding: 5px;
+  font-family: Montserrat;
 }
 
 .logo {
-  width: 150px !important;
+  width: 100px !important;
   height: 30px;
-  object-fit: contain;
   border-radius: 0 !important;
 }

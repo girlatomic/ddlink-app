@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./NewProjectPage.css";
 
 const INIT_STATE = {
@@ -10,6 +11,7 @@ const INIT_STATE = {
 
 export default function NewProjectPage(props) {
   const [formData, setFormData] = useState(INIT_STATE);
+  let navigate = useNavigate();
 
   function handleChange(event) {
     let { name, value } = event.target;
@@ -37,6 +39,7 @@ export default function NewProjectPage(props) {
       if (response.ok) {
         let projects = await response.json();
         setFormData(projects);
+        navigate(`/users/${props.user.id}`);
       } else {
         console.log(`Server error: ${response.status} ${response.statusText}`);
       }
@@ -48,7 +51,7 @@ export default function NewProjectPage(props) {
   return (
     <div className="container">
       <h2 className="title">Project form</h2>
-      <form onSubmit={handleSubmit}>
+      <form className="pt-4" onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Project name</label>
           <input
@@ -69,7 +72,7 @@ export default function NewProjectPage(props) {
             onChange={handleChange}
           />
         </div>
-        <div className="form-group">
+        {/* <div className="form-group">
           <label>Looking for</label>
           <textarea
             className="form-control mb-3"
@@ -78,7 +81,7 @@ export default function NewProjectPage(props) {
             value={formData.lookingfor}
             onChange={handleChange}
           ></textarea>
-        </div>
+        </div> */}
         <div className="form-group">
           <label>Project image</label>
           <input

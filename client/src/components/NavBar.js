@@ -1,7 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 export default function NavBar(props) {
+  let { userId } = useParams();
   return (
     <div>
         <nav className="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
@@ -11,18 +12,14 @@ export default function NavBar(props) {
               <span className="navbar-toggler-icon"></span>
             </button>
             <div className="collapse navbar-collapse" id="navbarNav">
-              <ul className="navbar-nav">
-                    <li className="nav-item">
-                    <Link to="/mainpage" className="nav-link" aria-current="page">Find your project</Link>
-                    </li>
-              </ul>
-            </div>
-            <div className="collapse navbar-collapse" id="navbarNav">
             {
               props.user
               ?
                 (
                   <ul className="navbar-nav ms-auto mb-2 mb-lg-0 g-3">
+                    <li className="nav-item">
+                    <Link to={`/mainpage/${props.user.id}`} className="nav-link" aria-current="page">Find your project</Link>
+                    </li>
                     <li className="nav-item">
                       <Link to={`/users/${props.user.id}`} className="nav-link"><i className="fa-solid fa-gear"></i> Settings </Link>
                     </li>
@@ -37,7 +34,7 @@ export default function NavBar(props) {
               :
                 (
                   <ul className="navbar-nav ms-auto mb-2 mb-lg-0 g-3">
-                    <li className="d-flex">
+                    <li className="nav-item d-flex">
                       <Link to="/login" className="nav-link"><i className="fab fa-solid fa-circle-user"></i> Login </Link>
                     </li>
                   </ul>
