@@ -13,7 +13,7 @@ CREATE TABLE users (
     bio VARCHAR(250) NULL,
     email VARCHAR(200) UNIQUE NOT NULL,
     picture VARCHAR(300) NOT NULL,
-    s_role VARCHAR (100) 
+    s_role VARCHAR (100) NULL
 );
 
 INSERT INTO users (given_name, family_name, bio, email, picture, s_role)
