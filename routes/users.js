@@ -23,23 +23,23 @@ function joinToJson(results) {
   let row0 = results.data[0];
 
   // Create skills array
-  let skills = results.data.map(row => ({
-      id: row.skillId,
-      s_role: row.s_role,
-      skill_name: row.skill_name,
+  let skills = results.data.map((row) => ({
+    id: row.skillId,
+    s_role: row.s_role,
+    skill_name: row.skill_name,
   }));
 
   // Create user obj
   let user = {
-      id: row0.userId,
-      given_name: row0.given_name,
-      family_name: row0.family_name,
-      bio: row0.bio,
-      email: row0.email,
-      picture: row0.picture,
-      s_role: row0.s_role,
-      skills
-  }
+    id: row0.userId,
+    given_name: row0.given_name,
+    family_name: row0.family_name,
+    bio: row0.bio,
+    email: row0.email,
+    picture: row0.picture,
+    s_role: row0.s_role,
+    skills,
+  };
 
   return user;
 }
@@ -73,6 +73,7 @@ router.get("/:userId", ensureSameUser, async (req, res, next) => {
           LEFT JOIN skills AS s ON us.skillId = s.id
           WHERE u.id = ${user.id}
       `;
+      console.log("sql", sql);
       let results = await db(sql);
       // Convert DB results into "sensible" JSON
       user = joinToJson(results);

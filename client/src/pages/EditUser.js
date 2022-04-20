@@ -37,7 +37,7 @@ export default function EditUser() {
 
   function handleChange(event) {
     let { name, value } = event.target;
-    // console.log("VAL", value, name);
+    console.log("VAL", value, name);
     setFormData((data) => ({
       ...data,
       [name]: value,
@@ -101,20 +101,22 @@ export default function EditUser() {
           <label>Role :</label>
           <input
             type="radio"
-            value={"Developer"}
+            className="form-check-input"
+            value="Developer"
+            id="Developer"
             name="s_role"
             onChange={handleChange}
             style={{ marginLeft: "10px" }}
-          />{" "}
-          Developer
+          />
+          <label className="ms-1">Developer</label>
           <input
             type="radio"
-            value={"Designer"}
+            value="Designer"
             name="s_role"
             onChange={handleChange}
             style={{ marginLeft: "10px" }}
-          />{" "}
-          Designer
+          />
+          <label className="ms-1">Designer</label>
         </div>
         <div className="form-group">
           <label>Bio</label>
