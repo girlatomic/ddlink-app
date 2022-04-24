@@ -7,7 +7,7 @@ import MainPage from "./pages/MainPage";
 import ChatPage from "./pages/ChatPage";
 import NewProjectPage from "./pages/NewProjectPage";
 import SettingsPage from "./pages/SettingsPage";
-import NewEditUserForm from "./pages/NewEditUserForm";
+import SkillsForm from "./pages/SkillsForm";
 import Login from "./pages/Login";
 import ProjectsTable from "./pages/ProjectsTable";
 import EditProjectPage from "./pages/EditProjectPage";
@@ -78,7 +78,7 @@ function App() {
           path="/newprojectpage"
           element={<NewProjectPage user={user} />}
         />
-        <Route path="/newedituserform" element={<NewEditUserForm />} />
+        <Route path="/skillsform/:userId" element={<SkillsForm />} />
         <Route path="/edituser/:userId" element={<EditUser />} />
         <Route path="/projectmodal" element={<ProjectModal />} />
         <Route

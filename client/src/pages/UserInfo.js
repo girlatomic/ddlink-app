@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import NewEditUserForm from "./NewEditUserForm";
+import SkillsForm from "./SkillsForm";
 import { useParams, Link } from "react-router-dom";
 import Api from "../helpers/Api";
 import Local from "../helpers/Local";
 import EditUser from "./EditUser";
 
 function UserInfo() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState([]);
   const [errorMsg, setErrorMsg] = useState("");
   let { userId } = useParams();
 
