@@ -2,15 +2,15 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Api from "../helpers/Api";
 
-const INIT_STATE = {
-  userId: "",
-  skillId: [],
-};
+// const INIT_STATE = {
+//   userId: "",
+//   skillId: [],
+// };
 
 export default function SkillsForm() {
   let { userId } = useParams();
   const INIT_STATE = {
-    userId: "",
+    userId: `${userId}`,
     skillId: [],
   };
 
