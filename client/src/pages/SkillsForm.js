@@ -2,20 +2,17 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Api from "../helpers/Api";
 
-// const INIT_STATE = {
-//   userId: "",
-//   skillId: [],
-// };
+const INIT_STATE = {
+  userId: [],
+  skillId: [],
+};
 
 export default function SkillsForm() {
   let { userId } = useParams();
-  const INIT_STATE = {
-    userId: `${userId}`,
-    skillId: [],
-  };
 
   const [formData, setFormData] = useState(INIT_STATE);
   let [skills, setSkills] = useState([]);
+  let [user, setUser] = useState([]);
 
   useEffect(() => {
     getSkills();
@@ -26,7 +23,7 @@ export default function SkillsForm() {
     try {
       let user = await Api.getUser(userId);
       if (user.ok) {
-        setFormData(user.data.id);
+        setUser(user.data.id);
       }
     } catch (e) {
       console.log("network error:", e.message);
@@ -35,15 +32,20 @@ export default function SkillsForm() {
 
   function onChange(id) {
     let skillId = INIT_STATE.skillId;
+    let userId = INIT_STATE.userId;
     let find = skillId.indexOf(id);
+
+    console.log("see", userId);
 
     if (find > -1) {
       skillId.splice(find, 1);
+      userId.pop(1);
     } else {
       skillId.push(id);
+      userId.push(user);
     }
-    setFormData({ skillId });
-    console.log("tutu", INIT_STATE);
+    setFormData({ skillId, userId });
+    console.log("tutu", formData);
   }
 
   const getSkills = () => {
@@ -51,7 +53,6 @@ export default function SkillsForm() {
       .then((response) => response.json())
       .then((skills) => {
         setSkills(skills);
-        console.log("this skills", skills);
       })
       .catch((error) => {
         console.log(error);
@@ -60,23 +61,24 @@ export default function SkillsForm() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    addSkills(formData);
     console.log("form", formData);
+    addSkills(formData);
     setFormData(INIT_STATE);
   }
 
-  async function addSkills(skill) {
+  async function addSkills(skills) {
     let options = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(skill),
+      body: JSON.stringify(skills),
     };
 
     try {
-      let response = await fetch("/skills", options);
+      let response = await fetch("/users", options);
       if (response.ok) {
         let skills = await response.json();
         setFormData(skills);
+        console.log("tuhqjw", skills);
         // navigate(`/users/${props.user.id}`);
       } else {
         console.log(`Server error: ${response.status} ${response.statusText}`);
@@ -92,10 +94,13 @@ export default function SkillsForm() {
         <div className="col-sm-9 col-md-7 col-lg-5 mx-auto">
           <div className="card border-1 shadow rounded-3 my-5">
             <div className="card-body p-4 p-sm-5">
-              <h3 className="card-title text-center mb-5 fs-3">
-                Please complete your profile
-              </h3>
               <form onSubmit={handleSubmit}>
+                <div>
+                  {user.email}
+                  <h3 className="card-title text-center mb-5 fs-3">
+                    Please complete your profile
+                  </h3>
+                </div>
                 <h2 className="text-center mb-4 fs-4">I'm a:</h2>
                 <input
                   type="radio"
