@@ -87,16 +87,16 @@ router.get("/:userId", ensureSameUser, async (req, res, next) => {
 
 // POST a new user
 router.post("/", async (req, res) => {
-  let { first_name, last_name, bio } = req.body;
+  let { userId, skillId } = req.body;
 
   let sql = `
-      INSERT INTO users (first_name, last_name, bio)
-      VALUES ('${first_name}', '${last_name}', '${bio}')
+      INSERT INTO users_skills (userId, skillId)
+      VALUES ('${userId}', '${skillId}')
   `;
 
   try {
     await db(sql);
-    let result = await db("SELECT * FROM users");
+    let result = await db("SELECT * FROM users_skills");
     let users = result.data;
     res.status(201).send(users);
   } catch (err) {

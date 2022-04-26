@@ -35,7 +35,7 @@ export default function SkillsForm() {
     let userId = INIT_STATE.userId;
     let find = skillId.indexOf(id);
 
-    console.log("see", userId);
+    console.log("see", skillId);
 
     if (find > -1) {
       skillId.splice(find, 1);
@@ -66,19 +66,19 @@ export default function SkillsForm() {
     setFormData(INIT_STATE);
   }
 
-  async function addSkills(skills) {
+  async function addSkills(formData) {
     let options = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(skills),
+      body: JSON.stringify(formData),
     };
 
     try {
       let response = await fetch("/users", options);
       if (response.ok) {
-        let skills = await response.json();
-        setFormData(skills);
-        console.log("tuhqjw", skills);
+        let formData = await response.json();
+        setFormData(formData);
+        console.log("tuhqjw", formData);
         // navigate(`/users/${props.user.id}`);
       } else {
         console.log(`Server error: ${response.status} ${response.statusText}`);
