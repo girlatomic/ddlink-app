@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+  text-align: left;
 }
 
 .mainpage {
@@ -8,13 +8,13 @@
 
 body {
   background: rgb(0, 0, 0);
+  color: aliceblue;
 }
 
 h2 {
   margin: 0;
   font-size: 30px;
-  color: rgba(34, 0, 255, 0.303);
-  border-bottom: rgb(233, 231, 231) 1px solid;
+  color: rgba(252, 251, 255, 0.995);
   padding: 5px;
   font-family: Montserrat;
 }
@@ -32,9 +32,10 @@ h2 {
     rgb(85, 1, 255) 10%,
     rgb(0, 250, 212) 100%
   );
+  font-weight: 700;
 }
 
 .btn-primary:hover {
-  background: #b1b122;
-  color: white;
+  background: rgb(85, 1, 255);
+  color: rgb(0, 255, 251);
 }
