@@ -51,7 +51,7 @@ function ProjectsTable(props) {
 
   return (
     <div className="container">
-      <div className="d-flex justify-content-between align-items-center border-bottom  mt-5 mb-5">
+      <div className="d-flex justify-content-between align-items-center border-bottom mt-5 mb-5">
         <h2>My Projects</h2>
         <Link to={`/newprojectpage`} className="btn btn-primary">
           + Add a project
@@ -61,6 +61,7 @@ function ProjectsTable(props) {
         <table className="table-responsive">
           <thead>
             <tr>
+              <th>id</th>
               <th>Project Name</th>
               <th>Description</th>
               <th>Image</th>
@@ -70,6 +71,7 @@ function ProjectsTable(props) {
           <tbody>
             {projects.map((p) => (
               <tr key={p.id}>
+                <td>{p.id}</td>
                 <td>{p.p_name}</td>
                 <td className="ps-0 pt-2">{p.p_description}</td>
                 <td>

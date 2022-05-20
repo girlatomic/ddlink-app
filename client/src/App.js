@@ -17,6 +17,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import Home from "./pages/Home";
 import EditUser from "./pages/EditUser";
 import ProjectModal from "./components/ProjectModal";
+import SkillsForm from "./pages/SkillsForm";
 
 function App() {
   const [user, setUser] = useState(Local.getUser());
@@ -80,6 +81,7 @@ function App() {
         />
         <Route path="/newedituserform" element={<NewEditUserForm />} />
         <Route path="/edituser/:userId" element={<EditUser />} />
+        <Route path="/skillsform/:userId" element={<SkillsForm />} />
         <Route path="/projectmodal" element={<ProjectModal />} />
         <Route
           path="/login"
