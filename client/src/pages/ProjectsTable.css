@@ -1,60 +1,59 @@
 table {
-    margin-top: 20px;
-    border-collapse: collapse;
-    border-spacing: 10;
-    width: 100%;
-    display: table;
-    box-sizing: border-box;
-    text-align: center;
-    border-color: rgb(12, 19, 235);
-    font-variant: normal;
+  margin-top: 20px;
+  border-collapse: collapse;
+  border-spacing: 10;
+  width: 100%;
+  display: table;
+  box-sizing: border-box;
+  text-align: center;
+  border-color: #0d6efd 1px;
+  font-variant: normal;
 }
 
 table thead {
-    background: #ffffff;
-    color: rgb(17, 59, 230);
-    text-align: center;
-    margin-left: 20px;
-    vertical-align: bottom;
-    display: table-header-group;
-    padding:20px;
-    font-weight: bolder;
+  background: #ffffff22;
+  color: rgb(239, 241, 247);
+  text-align: center;
+  margin-left: 20px;
+  vertical-align: bottom;
+  display: table-header-group;
+  padding: 20px;
+  font-weight: bolder;
+  border-color: rgb(0, 255, 251) 1px;
 }
 
 tr {
-    display: table-row;
-    vertical-align: middle;
-    border: 1px solid #3216eb;
+  display: table-row;
+  vertical-align: middle;
+  border: 1px solid #0d6efd;
 }
 
 td {
-    border-bottom: 1px solid #3323ec;
-    margin: 0;
-    /* overflow: visible; */
-    padding: 0.3em 1em;
-    white-space: normal !important; 
-    word-wrap: break-word !important; 
+  border-bottom: 1px solid rgb(0, 255, 251) 1px;
+  margin: 0;
+  /* overflow: visible; */
+  padding: 0.3em 1em;
+  white-space: normal !important;
+  word-wrap: break-word !important;
 }
 
 img {
-    width: 250px;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 10px;
+  width: 250px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
 .profile {
-    width: 100% !important;
-    height: 300px !important;
-    object-fit: cover;
+  width: 100% !important;
+  height: 300px !important;
+  object-fit: cover;
 }
 
-
 h2 {
-    margin: 0;
-    font-size: 30px;
-    color: rgb(94, 94, 94);
-    border-bottom: rgb(233, 231, 231) 1px solid;
-    padding: 5px;
-    font-family: Montserrat;
+  margin: 0;
+  font-size: 30px;
+  color: rgb(145, 145, 145);
+  padding: 5px;
+  font-family: Montserrat;
 }

@@ -1,20 +1,20 @@
 .App {
-  text-align: center;
+  text-align: left;
 }
 
-/* .mainpage {
-  background: linear-gradient(
-    160deg,
-    rgb(48, 16, 255) 0%,
-    rgba(56, 73, 228, 0.571) 130%
-  );
-} */
+.mainpage {
+  background: rgb(16, 16, 16);
+}
+
+body {
+  background: rgb(0, 0, 0);
+  color: aliceblue;
+}
 
 h2 {
   margin: 0;
   font-size: 30px;
-  color: rgba(34, 0, 255, 0.303);
-  border-bottom: rgb(233, 231, 231) 1px solid;
+  color: rgba(252, 251, 255, 0.995);
   padding: 5px;
   font-family: Montserrat;
 }
@@ -23,4 +23,19 @@ h2 {
   width: 100px !important;
   height: 30px;
   border-radius: 0 !important;
+}
+
+.btn-primary {
+  outline: solid rgb(0, 255, 251) 1px;
+  background: linear-gradient(
+    150deg,
+    rgb(85, 1, 255) 10%,
+    rgb(0, 250, 212) 100%
+  );
+  font-weight: 700;
+}
+
+.btn-primary:hover {
+  background: rgb(85, 1, 255);
+  color: rgb(0, 255, 251);
 }

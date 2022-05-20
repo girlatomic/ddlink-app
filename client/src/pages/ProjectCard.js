@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useRef, useEffect } from "react";
-import Local from '../helpers/Local';
+import Local from "../helpers/Local";
 import TinderCard from "react-tinder-card";
 import "./ProjectCard.css";
 import Noty from "noty";
@@ -22,11 +22,11 @@ function ProjectCard() {
     //get user from local storage
     let user = Local.getUserSkills();
     setUser(user);
-    console.log('thisis user from local', user);
+    console.log("thisis user from local", user);
     //make a comma separated list of skill ids
-    let skillId = user.skills.map(s => (s.id))
-    let skillIdList = skillId.join(",")
-    console.log('this skillId', skillIdList)
+    let skillId = user.skills.map((s) => s.id);
+    let skillIdList = skillId.join(",");
+    console.log("this skillId", skillIdList);
     // fetch(`/projects?skills={5,6,8}`)
     fetch(`/projects?skills=${skillIdList}`)
       .then((response) => response.json())
@@ -109,7 +109,7 @@ function ProjectCard() {
   return (
     <div id="root-container">
       <div className="sub-container">
-        <img src="/img/logo-color.svg" className="logo-color"/>
+        <img src="/img/logo-color.svg" className="logo-color" />
         <div className="cardContainer">
           {projects.map((project, index) => (
             <div key={project.id}>
@@ -144,19 +144,19 @@ function ProjectCard() {
               style={{ backgroundColor: !canSwipe && "#c3c4d3" }}
               onClick={() => swipe("left")}
             >
-              Swipe left!
+              <i className="fa-solid fa-ban"></i> Swipe left!
             </button>
             <button
               style={{ backgroundColor: !canGoBack && "#c3c4d3" }}
               onClick={() => goBack()}
             >
-              Undo swipe!
+              <i className="fa-solid fa-rotate-left"></i> Undo swipe!
             </button>
             <button
               style={{ backgroundColor: !canSwipe && "#c3c4d3" }}
               onClick={() => swipe("right")}
             >
-              Swipe right!
+              <i className="fa-solid fa-heart"></i> Swipe right!
             </button>
           </div>
         </div>

@@ -61,8 +61,8 @@ function UserInfo() {
                 <i className="fa fa-youtube-play"></i>
                 <i className="fa fa-linkedin"></i>
               </div>
-              <div className="p-2 bg-black text-white">
-                <h5>{user.s_role}</h5>
+              <div className="p-2 bg-black border border-info text-white">
+                <h5>{user.skills[1].s_role}</h5>
               </div>
               <div className="p-3 border border-primary">
                 <h5>About me</h5>
@@ -71,7 +71,7 @@ function UserInfo() {
               <div>
                 <ul className="ps-0 pt-2" key={user.id}>
                   {user.skills.map((s) => (
-                    <li className="badge bg-success p-3 me-2" key={s.id}>
+                    <li className="badge bg-primary p-3 me-2" key={s.id}>
                       {s.skill_name}
                     </li>
                   ))}

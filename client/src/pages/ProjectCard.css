@@ -26,10 +26,6 @@ h1 {
   color: #0d6efd;
 }
 
-h2 {
-  color: #fff;
-}
-
 .swipe {
   position: absolute;
 }
@@ -42,13 +38,14 @@ h2 {
 
 .cards {
   position: relative;
-  background-color: #fff;
+  background-color: rgb(31, 29, 29);
   width: 80vw;
   max-width: 380px;
   height: 240px;
   border-radius: 20px;
   background-size: cover;
   background-position: 50%;
+  outline: solid rgb(0, 255, 251) 1px;
 }
 
 .cardContent {
@@ -97,8 +94,13 @@ h2 {
   border-radius: 5px;
   border: none;
   color: #fff;
-  font-size: 12px;
-  background-color: #0d6efd;
+  font-size: 14px;
+  background: linear-gradient(
+    140deg,
+    rgb(85, 1, 255) 10%,
+    rgb(0, 250, 212) 100%
+  );
+  outline: solid rgb(0, 255, 251) 1px;
   transition: 200ms;
   margin: 0 10px;
   font-weight: bolder;
@@ -106,7 +108,7 @@ h2 {
   box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.1);
 }
 
-.logo-color{
+.logo-color {
   display: flex;
   width: 150px !important;
   flex-direction: column;
