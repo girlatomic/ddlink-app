@@ -13,7 +13,7 @@ import ProjectsTable from "./pages/ProjectsTable";
 import EditProjectPage from "./pages/EditProjectPage";
 import Navbar from "./components/NavBar";
 import ProjectCard from "./pages/ProjectCard";
-import PrivateRoute from './components/PrivateRoute';
+import PrivateRoute from "./components/PrivateRoute";
 import Home from "./pages/Home";
 import EditUser from "./pages/EditUser";
 import ProjectModal from "./components/ProjectModal";
@@ -32,15 +32,15 @@ function App() {
         token: googleData.tokenId,
       }),
       headers: {
-        "Content-Type": "application/json"
-      }
-      });
-      const data = await res.json()
-      console.log('this is the response data', data)
-      Local.saveUserInfo(data.token, data.user);
-      setUser(data.user);
-      navigate(`/`);
-  }
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await res.json();
+    console.log("this is the response data", data);
+    Local.saveUserInfo(data.token, data.user);
+    setUser(data.user);
+    navigate(`/`);
+  };
 
   function doLogout() {
     Local.removeUserInfo();
@@ -53,20 +53,18 @@ function App() {
 
   async function fetchProfile() {
     let response = await Api.getUser(userId);
-    console.log('this is the reesss2', response)
+    console.log("this is the reesss2", response);
     if (response.ok) {
-          const data = response.data;
-          console.log('this data2', data);
-          Local.saveUserSkills(data)
-          setUserS(data);
-          setErrorMsg('');
+      const data = response.data;
+      console.log("this data2", data);
+      Local.saveUserSkills(data);
+      setUserS(data);
+      setErrorMsg("");
     } else {
-          setUser(null);
-          setErrorMsg(response.error);
+      setUser(null);
+      setErrorMsg(response.error);
     }
   }
-
-
 
   return (
     <div>
@@ -74,9 +72,12 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/mainpage/:userId" element={<MainPage user={user} />} />
-        <Route path="/projectcard" element={<ProjectCard user={user}  />} />
+        <Route path="/projectcard" element={<ProjectCard user={user} />} />
         <Route path="/chatpage" element={<ChatPage />} />
-        <Route path="/newprojectpage" element={<NewProjectPage user={user} />} />
+        <Route
+          path="/newprojectpage"
+          element={<NewProjectPage user={user} />}
+        />
         <Route path="/newedituserform" element={<NewEditUserForm />} />
         <Route path="/edituser/:userId" element={<EditUser />} />
         <Route path="/projectmodal" element={<ProjectModal />} />
@@ -85,7 +86,10 @@ function App() {
           element={<Login googleLogin={handleGoogleLogin} />}
         />
         <Route path="/projectstable" element={<ProjectsTable user={user} />} />
-        <Route path="/editprojectpage/:id" element={<EditProjectPage user={user} />} />
+        <Route
+          path="/editprojectpage/:id"
+          element={<EditProjectPage user={user} />}
+        />
         <Route
           path="/users/:userId"
           element={
