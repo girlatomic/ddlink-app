@@ -45,7 +45,7 @@ export default function SkillsForm() {
       userId.push(user);
     }
     setFormData({ skillId, userId });
-    console.log("tutu", formData);
+    console.log("tutu", skillId);
   }
 
   const getSkills = () => {
@@ -78,7 +78,7 @@ export default function SkillsForm() {
       if (response.ok) {
         let formData = await response.json();
         setFormData(formData);
-        console.log("tuhqjw", formData);
+
         // navigate(`/users/${props.user.id}`);
       } else {
         console.log(`Server error: ${response.status} ${response.statusText}`);

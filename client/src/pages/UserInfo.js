@@ -61,9 +61,9 @@ function UserInfo() {
                 <i className="fa fa-youtube-play"></i>
                 <i className="fa fa-linkedin"></i>
               </div>
-              <div className="p-2 bg-black text-white">
+              {/* <div className="p-2 bg-black text-white">
                 <h5>{user.s_role}</h5>
-              </div>
+              </div> */}
               <div className="p-3 border border-primary">
                 <h5>About me</h5>
                 <p>{user.bio}</p>
