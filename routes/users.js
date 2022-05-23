@@ -2,6 +2,27 @@ var express = require("express");
 const { ensureSameUser } = require("../middleware/guards");
 var router = express.Router();
 const db = require("../model/helper");
+require("dotenv").config();
+const mysql = require("mysql");
+
+const DB_HOST = process.env.DB_HOST;
+const DB_USER = process.env.DB_USER;
+const DB_PASS = process.env.DB_PASS;
+const DB_NAME = process.env.DB_NAME;
+
+const con = mysql.createConnection({
+  host: DB_HOST || "127.0.0.1",
+  user: DB_USER || "root",
+  password: DB_PASS,
+  database: DB_NAME || "database",
+  multipleStatements: true,
+  charset: "utf8mb4",
+});
+
+con.connect(function (err) {
+  if (err) throw err;
+  console.log("Connected!");
+});
 
 // async function ensureUserExists(req, res, next) {
 //   try {
@@ -87,21 +108,25 @@ router.get("/:userId", ensureSameUser, async (req, res, next) => {
 
 // POST a new user
 router.post("/", async (req, res) => {
-  let { userId, skillId } = req.body;
+  let items = req.body;
 
-  let sql = `
-      INSERT INTO users_skills (userId, skillId)
-      VALUES ('${userId}', '${skillId}')
-  `;
+  let sql = "INSERT INTO `users_skills` (userId, skillId) VALUES ?";
+  con.query(
+    sql,
+    [items.map((item) => [item.userId, item.skillId])],
+    function (err) {
+      if (err) throw err;
+    }
+  );
 
-  try {
-    await db(sql);
-    let result = await db("SELECT * FROM users_skills");
-    let users = result.data;
-    res.status(201).send(users);
-  } catch (err) {
-    res.status(500).send({ error: err.message });
-  }
+  // try {
+  //   await db(sql);
+  //   let result = await db("SELECT * FROM users_skills");
+  //   let userSkills = result.data;
+  //   res.status(201).send(userSkills);
+  // } catch (err) {
+  //   res.status(500).send({ error: err.message });
+  // }
 });
 
 // EDIT USER PROFILE
