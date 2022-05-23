@@ -24,22 +24,6 @@ con.connect(function (err) {
   console.log("Connected!");
 });
 
-// async function ensureUserExists(req, res, next) {
-//   try {
-//       let results = await db(`SELECT * FROM users WHERE id = ${req.params.id}`);
-//       if (results.data.length === 1) {
-//           // Project was found; save it in response obj for the route function to use
-//           res.locals.project = results.data[0];
-//           // Let next middleware function run
-//           next();
-//       } else {
-//           res.status(404).send({ error: 'User not found' });
-//       }
-//   } catch (err) {
-//       res.status(500).send({ error: err.message });
-//   }
-// }
-
 function joinToJson(results) {
   let row0 = results.data[0];
 
@@ -118,15 +102,6 @@ router.post("/", async (req, res) => {
       if (err) throw err;
     }
   );
-
-  // try {
-  //   await db(sql);
-  //   let result = await db("SELECT * FROM users_skills");
-  //   let userSkills = result.data;
-  //   res.status(201).send(userSkills);
-  // } catch (err) {
-  //   res.status(500).send({ error: err.message });
-  // }
 });
 
 // EDIT USER PROFILE
