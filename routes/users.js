@@ -63,7 +63,7 @@ router.get("/", async (req, res) => {
 // GET user by Id
 router.get("/:userId", ensureSameUser, async (req, res, next) => {
   let { userId } = req.params;
-  let sql = "SELECT * FROM users WHERE id = " + userId;
+  let sql = `SELECT * FROM users WHERE id = ${userId} `;
 
   try {
     let results = await db(sql);
@@ -76,7 +76,7 @@ router.get("/:userId", ensureSameUser, async (req, res, next) => {
           FROM users AS u
           LEFT JOIN users_skills AS us ON u.id = us.userId
           LEFT JOIN skills AS s ON us.skillId = s.id
-          WHERE u.id = ${user.id}
+          WHERE u.id = ${userId}
       `;
       let results = await db(sql);
       console.log("reessss", results);

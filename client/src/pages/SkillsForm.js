@@ -90,7 +90,10 @@ export default function SkillsForm() {
   return (
     <div className="container">
       <h2 className="title">Edit your skills</h2>
-      <form className="pt-4" onSubmit={handleSubmit}>
+      <form
+        className="col-sm-9 col-md-7 col-lg-5 mx-auto"
+        onSubmit={handleSubmit}
+      >
         <div>
           <Select
             isMulti
@@ -98,8 +101,22 @@ export default function SkillsForm() {
             options={options}
             value={selected}
             onChange={setSelected}
-            className="basic-multi-select"
+            // className="basic-multi-select"
             classNamePrefix="select"
+            styles={{
+              multiValueLabel: (base) => ({
+                ...base,
+                backgroundColor: "rgb(85, 1, 255)",
+                color: "white",
+                fontSize: "16px",
+                fontFamily: "",
+              }),
+              option: (base) => ({
+                ...base,
+                border: "1px dotted",
+                height: "100%",
+              }),
+            }}
           />
         </div>
         <button type="submit" className="btn btn-primary mt-3">

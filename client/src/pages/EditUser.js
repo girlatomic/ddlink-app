@@ -47,6 +47,7 @@ export default function EditUser() {
   function handleSubmit(event) {
     event.preventDefault();
     editUser(formData);
+    console.log("usData", formData);
     setFormData(INIT_STATE);
   }
 
@@ -99,20 +100,24 @@ export default function EditUser() {
         </div>
         <div className="form-group">
           <label>Role :</label>
+          <br></br>
           <input
             type="radio"
             className="form-check-input"
             value="Developer"
             id="Developer"
             name="s_role"
+            checked={formData.s_role === "Developer"}
             onChange={handleChange}
-            style={{ marginLeft: "10px" }}
           />
           <label className="ms-1">Developer</label>
           <input
             type="radio"
+            className="form-check-input"
             value="Designer"
+            id="Designer"
             name="s_role"
+            checked={formData.s_role === "Designer"}
             onChange={handleChange}
             style={{ marginLeft: "10px" }}
           />
