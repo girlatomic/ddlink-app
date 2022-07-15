@@ -88,41 +88,61 @@ export default function SkillsForm() {
   }
 
   return (
-    <div className="container">
-      <h2 className="title">Edit your skills</h2>
-      <form
-        className="col-sm-9 col-md-7 col-lg-5 mx-auto"
-        onSubmit={handleSubmit}
-      >
-        <div>
-          <Select
-            isMulti
-            name="skills"
-            options={options}
-            value={selected}
-            onChange={setSelected}
-            // className="basic-multi-select"
-            classNamePrefix="select"
-            styles={{
-              multiValueLabel: (base) => ({
-                ...base,
-                backgroundColor: "rgb(85, 1, 255)",
-                color: "white",
-                fontSize: "16px",
-                fontFamily: "",
-              }),
-              option: (base) => ({
-                ...base,
-                border: "1px dotted",
-                height: "100%",
-              }),
-            }}
-          />
+    <div className="card-container">
+      <div className="row align-items-center w-50">
+        <div className="col-sm-12 col-md-12 col-lg-12 mx-auto">
+          <div className="card border-primary border-1 bg-dark text-light shadow rounded-3 pt-5">
+            <div className="card-body p-4 p-sm-5">
+              <h4 className="card-title text-center mb-5">
+                Select your Tech Stack
+              </h4>
+              <div className="mb-4">
+                <form onSubmit={handleSubmit}>
+                  <div className="mb-4">
+                    <Select
+                      isMulti
+                      name="skills"
+                      options={options}
+                      value={selected}
+                      onChange={setSelected}
+                      // className="basic-multi-select"
+                      classNamePrefix="select"
+                      styles={{
+                        multiValueLabel: (base) => ({
+                          ...base,
+                          backgroundColor: "rgb(85, 1, 255)",
+                          color: "white",
+                          fontSize: "16px",
+                          fontFamily: "Raleway",
+                        }),
+                        option: (base) => ({
+                          ...base,
+                          height: "100%",
+                          color: "black",
+                        }),
+                        multiValue: (base) => ({
+                          ...base,
+                          border: "solid rgb(0, 255, 251) 1px",
+                          borderRadius: "5px",
+                          backgroundColor: "darkgray",
+                        }),
+                      }}
+                    />
+                  </div>
+                  <div className="d-flex justify-content-center mt-4">
+                    <button
+                      type="submit"
+                      className="btn btn-primary ps-4 pe-4 mt-3"
+                    >
+                      Save
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
-        <button type="submit" className="btn btn-primary mt-3">
-          Submit
-        </button>
-      </form>
+      </div>
     </div>
   );
 }

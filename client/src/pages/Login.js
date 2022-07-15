@@ -10,9 +10,9 @@ function Login(props) {
   };
 
   return (
-    <div className="container">
-      <div className="row align-items-center">
-        <div className="col-sm-9 col-md-7 col-lg-5 mx-auto">
+    <div className="card-container">
+      <div className="row align-items-center w-50">
+        <div className="col-sm-12 col-md-10 col-lg-10 mx-auto">
           <div className="card text-center border-primary border-1 bg-dark text-light shadow rounded-3 mt-5 pt-5 my-auto">
             <div className="card-body p-4 p-sm-5">
               <h5 className="card-title text-center mb-5">
