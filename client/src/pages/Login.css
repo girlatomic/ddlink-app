@@ -1,10 +1,10 @@
 .btn-google {
-    color: white !important;
-    background-color: #ea4335;
-  }
+  color: white !important;
+  background-color: #ea4335;
+}
 
-  .btn-login {
-    font-size: 0.9rem;
-    letter-spacing: 0.05rem;
-    padding: 0.75rem 1rem;
-  }
+.btn-login {
+  font-size: 0.9rem;
+  letter-spacing: 0.05rem;
+  padding: 0.75rem 1rem;
+}

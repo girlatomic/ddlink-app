@@ -19,6 +19,10 @@ h2 {
   font-family: Montserrat;
 }
 
+h5 {
+  color: rgba(66, 133, 244, 1);
+}
+
 .logo {
   width: 100px !important;
   height: 30px;
