@@ -4,13 +4,34 @@ import { useParams } from "react-router-dom";
 import Api from "../helpers/Api";
 
 export default function SkillsForm() {
-  //   const theme = useTheme();
   let { userId } = useParams();
   let [skills, setSkills] = useState([]);
   let [user, setUser] = useState([]);
-  //   let [skillName, setSkillName] = useState([]);
+
   let [selected, setSelected] = useState([]);
   let [formData, setFormData] = useState("");
+
+  const selectStyle = {
+    multiValueLabel: (base) => ({
+      ...base,
+      backgroundColor: "rgb(85, 1, 255)",
+      color: "white",
+      fontSize: "16px",
+      fontFamily: "Raleway",
+    }),
+    option: (base) => ({
+      ...base,
+      height: "100%",
+      color: "black",
+    }),
+    multiValue: (base) => ({
+      ...base,
+      border: "solid rgb(0, 255, 251) 1px",
+      borderRadius: "5px",
+      backgroundColor: "darkgray",
+    }),
+  };
+
   console.log("this selected", selected);
 
   let options = skills.map((skill) => {
@@ -62,7 +83,6 @@ export default function SkillsForm() {
     event.preventDefault();
     console.log("form", userSkills);
     addSkills(userSkills);
-    // setFormData(INIT_STATE);
   }
 
   async function addSkills(userSkills) {
@@ -77,8 +97,6 @@ export default function SkillsForm() {
       if (response.ok) {
         let formData = await response.json();
         setFormData(formData);
-        console.log("tuhqjw", formData);
-        // navigate(`/users/${props.user.id}`);
       } else {
         console.log(`Server error: ${response.status} ${response.statusText}`);
       }
@@ -105,28 +123,8 @@ export default function SkillsForm() {
                       options={options}
                       value={selected}
                       onChange={setSelected}
-                      // className="basic-multi-select"
                       classNamePrefix="select"
-                      styles={{
-                        multiValueLabel: (base) => ({
-                          ...base,
-                          backgroundColor: "rgb(85, 1, 255)",
-                          color: "white",
-                          fontSize: "16px",
-                          fontFamily: "Raleway",
-                        }),
-                        option: (base) => ({
-                          ...base,
-                          height: "100%",
-                          color: "black",
-                        }),
-                        multiValue: (base) => ({
-                          ...base,
-                          border: "solid rgb(0, 255, 251) 1px",
-                          borderRadius: "5px",
-                          backgroundColor: "darkgray",
-                        }),
-                      }}
+                      styles={selectStyle}
                     />
                   </div>
                   <div className="d-flex justify-content-center mt-4">
