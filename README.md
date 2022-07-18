@@ -6,7 +6,7 @@ Borrowing from the dating app format of swipe and like, DDLink allows for design
 
 ## App
 
-![home](/public/images/DDLINK.jpg)
+![home](/public/images/DD-LINK.jpg)
 
 ## Setup
 
