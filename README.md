@@ -24,7 +24,7 @@ Borrowing from the dating app format of swipe and like, DDLink allows for design
 ```bash
   DB_HOST=localhost
   DB_USER=YOURUSER
-  DB_NAME=emanager
+  DB_NAME=ddlink
   DB_PASS=YOURPASSWORD
 ```
 
