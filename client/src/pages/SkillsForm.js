@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Select from "react-select";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Api from "../helpers/Api";
 
-export default function SkillsForm() {
+export default function SkillsForm(props) {
+  let navigate = useNavigate();
   let { userId } = useParams();
   let [skills, setSkills] = useState([]);
   let [user, setUser] = useState([]);
@@ -103,6 +104,7 @@ export default function SkillsForm() {
     } catch (err) {
       console.log(`Server error: ${err.message}`);
     }
+    navigate(`/users/${props.user.id}`);
   }
 
   return (

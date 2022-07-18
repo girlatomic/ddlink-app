@@ -6,10 +6,10 @@ export default function SkillsForm() {
   return (
     <div className="container">
       <div className="d-flex justify-content-between align-items-center border-bottom mt-5">
-        <h2>My Skills</h2>
+        {/* <h2>My Skills</h2>
         <Link to={`/skillsform/${userId}`} className="btn btn-primary">
           Edit Skills
-        </Link>
+        </Link> */}
       </div>
     </div>
   );

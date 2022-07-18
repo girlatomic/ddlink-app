@@ -42,7 +42,7 @@ function joinToJson(results) {
     bio: row0.bio,
     email: row0.email,
     picture: row0.picture,
-    s_role: row0.s_role,
+    u_role: row0.u_role,
     skills,
   };
 
@@ -76,7 +76,7 @@ router.get("/:userId", ensureSameUser, async (req, res, next) => {
           FROM users AS u
           LEFT JOIN users_skills AS us ON u.id = us.userId
           LEFT JOIN skills AS s ON us.skillId = s.id
-          WHERE u.id = ${userId}
+          WHERE u.id = ${user.id}
       `;
       let results = await db(sql);
       console.log("reessss", results);
@@ -107,10 +107,10 @@ router.post("/", async (req, res) => {
 // EDIT USER PROFILE
 router.put("/:userId", async (req, res, next) => {
   let { userId } = req.params;
-  let { s_role, bio } = req.body;
+  let { bio, u_role } = req.body;
 
   let sql = `SELECT * FROM users WHERE id = ${userId} `;
-  let update = `UPDATE users SET bio = '${bio}', s_role = '${s_role}' WHERE id = ${userId}`;
+  let update = `UPDATE users SET bio = '${bio}', u_role = '${u_role}' WHERE id = ${userId}`;
 
   try {
     await db(update);

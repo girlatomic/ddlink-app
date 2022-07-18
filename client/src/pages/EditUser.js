@@ -6,10 +6,10 @@ import Api from "../helpers/Api";
 const INIT_STATE = {
   given_name: "",
   family_name: "",
-  s_role: "",
   bio: "",
   email: "",
   picture: "",
+  s_role: "",
 };
 
 export default function EditUser() {

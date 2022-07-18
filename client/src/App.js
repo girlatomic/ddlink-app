@@ -18,6 +18,7 @@ import Home from "./pages/Home";
 import EditUser from "./pages/EditUser";
 import ProjectModal from "./components/ProjectModal";
 import SkillsForm from "./pages/SkillsForm";
+import UserForm from "./pages/UserForm";
 
 function App() {
   const [user, setUser] = useState(Local.getUser());
@@ -40,7 +41,7 @@ function App() {
     console.log("this is the response data", data);
     Local.saveUserInfo(data.token, data.user);
     setUser(data.user);
-    navigate(`/`);
+    navigate(`/userform/${data.user.id}`);
   };
 
   function doLogout() {
@@ -64,6 +65,7 @@ function App() {
     } else {
       setUser(null);
       setErrorMsg(response.error);
+      navigate(`/login`);
     }
   }
 
@@ -80,8 +82,12 @@ function App() {
           element={<NewProjectPage user={user} />}
         />
         <Route path="/newedituserform" element={<NewEditUserForm />} />
+        <Route path="/userform/:userId" element={<UserForm />} />
         <Route path="/edituser/:userId" element={<EditUser />} />
-        <Route path="/skillsform/:userId" element={<SkillsForm />} />
+        <Route
+          path="/skillsform/:userId"
+          element={<SkillsForm user={user} />}
+        />
         <Route path="/projectmodal" element={<ProjectModal />} />
         <Route
           path="/login"
